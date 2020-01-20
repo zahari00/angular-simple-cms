@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,37 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    public function login(Request $request) 
+    {
+        $user = User::where('email', $request->email)->first();
+        if(!isset($user) || !$user) {
+            return [
+                'success'   => false,
+                'errors'    => ['User not found']
+            ];
+        } 
+
+        if(!Hash::check($request->password, $user->password)) {
+            return [
+                'success'   => false,
+                'errors'    => ['Password do not match']
+            ];
+        }
+
+        $token = md5(time() . 'Aas*%^a!@3213#as');
+        $user->token = $token;
+        $user->save();
+
+        return [
+            'success'   => true,
+            'data'      => [
+                'token' => $token,
+                'email' => $user->email
+            ]
+        ];
+        
     }
 }
