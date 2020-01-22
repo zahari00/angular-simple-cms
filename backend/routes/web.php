@@ -24,4 +24,5 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('blocks', 'BlockController');
     Route::resource('pages', 'PageController');
+    Route::resource('media', 'MediaController');
 });

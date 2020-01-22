@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function login(Request $request) 
     {
-        $user = User::where('email', $request->body->email)->first();
+        $user = User::where('email', $request->body['email'])->first();
         if(!isset($user) || !$user) {
             return [
                 'success'   => false,
@@ -19,7 +19,7 @@ class LoginController extends Controller
             ];
         }
 
-        if(!Hash::check($request->body->password, $user->password)) {
+        if(!Hash::check($request->body['password'], $user->password)) {
             return [
                 'success'   => false,
                 'errors'    => ['Password do not match']

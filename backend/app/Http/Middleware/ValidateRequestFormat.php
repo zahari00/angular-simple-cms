@@ -15,15 +15,10 @@ class ValidateRequestFormat
      */
     public function handle($request, Closure $next)
     {
-        if (is_array($request->body)) {
-            print json_encode([
-                'success'   => false,
-                'errors'    => [
-                    'Request format is invalid'
-                ]
-            ]);
-            exit();
+        if (!isset($request->body)) {
+            $request->merge(['body' => []]);
         }
+        
         return $next($request);
     }
 }
