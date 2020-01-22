@@ -15,4 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/login', 'Auth\LoginController@login');
+Route::post('/login', 'LoginController@login');
+
+Route::middleware(['auth'])->group(function() { 
+    Route::get('/test', function() {
+        return 'middleware passed';
+    });
+
+    Route::resource('blocks', 'BlockController');
+    Route::resource('pages', 'PageController');
+});

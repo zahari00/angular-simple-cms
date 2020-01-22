@@ -2,10 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\User;
 use Closure;
 
-class CheckAuthentication
+class ValidateRequestFormat
 {
     /**
      * Handle an incoming request.
@@ -16,19 +15,15 @@ class CheckAuthentication
      */
     public function handle($request, Closure $next)
     {
-        $user = User::where('token', $request->token)->first();
-
-        if(!isset($user) || !$user) {
+        if (is_array($request->body)) {
             print json_encode([
-                'success' => false,
+                'success'   => false,
                 'errors'    => [
-                    'Not allowed'
+                    'Request format is invalid'
                 ]
             ]);
             exit();
         }
-
-        $request->merge(['user' => $user]);
         return $next($request);
     }
 }
