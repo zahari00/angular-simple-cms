@@ -1,24 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
-import { HomeComponent } from './home/home.component';
-import { BlocksComponent } from './admin-panel/blocks/blocks.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { AuthModule } from "./auth/auth.module";
+
+// http module
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AdminPanelModule } from "./admin-panel/admin-panel.module";
+import { HttpInterceptorService } from './http/http-interceptor.service';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AboutComponent,
-    HomeComponent,
-    BlocksComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthModule,
+    HttpClientModule,
+    AdminPanelModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

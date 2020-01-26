@@ -16,16 +16,17 @@ class CheckAuthentication
      */
     public function handle($request, Closure $next)
     {
-        $user = User::where('token', $request->token)->first();
-
-        if(!isset($user) || !$user) {
-            print json_encode([
-                'success' => false,
-                'errors'    => [
-                    'Not allowed'
-                ]
-            ]);
-            exit();
+        $user = User::where('token', $request->header('Authorization'))->first();
+        
+        if (!isset($user) || !$user) {
+            return response()
+                ->json([
+                    'code'      => 403,
+                    'success'   => false,
+                    'errors'    => [
+                        'Not allowed'
+                    ]
+                ]);
         }
 
         $request->merge(['user' => $user]);

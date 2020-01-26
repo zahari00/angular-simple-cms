@@ -10,19 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('api/login', 'Api\LoginController@login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('api/pages/find/{slug}', 'Api\PageController@find');
 
-Route::post('/login', 'LoginController@login');
-
-Route::middleware(['auth'])->group(function() { 
-    Route::get('/test', function() {
+Route::middleware(['cors', 'auth'])->group(function () {
+    Route::get('/test', function () {
         return 'middleware passed';
     });
 
-    Route::resource('blocks', 'BlockController');
-    Route::resource('pages', 'PageController');
-    Route::resource('media', 'MediaController');
+    Route::resource('api/blocks', 'Api\BlockController', [
+        'except'    => ['create', 'edit']
+    ]);
+
+    Route::resource('api/pages', 'Api\PageController', [
+        'except'    => ['create', 'edit']
+    ]);
+
+    Route::resource('api/media', 'Api\MediaController', [
+        'except'    => ['create', 'edit']
+    ]);
 });

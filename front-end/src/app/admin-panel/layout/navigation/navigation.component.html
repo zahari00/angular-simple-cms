@@ -1,0 +1,27 @@
+<div class="navigation">
+  <h1 class="backend-title">
+    <a routerLink="/backend">
+      <fa-icon [icon]="mainIcon"></fa-icon>CMS
+    </a>
+  </h1>
+  <span class="divider mt-0"></span>
+  <span class="info-text">CONTENT</span>
+  <a class="router-link" routerLinkActive="/backend/pages">
+    <fa-icon [icon]="pagesIcon"></fa-icon>
+    Pages
+  </a>
+  <a class="router-link" routerLinkActive="/backend/blocks">
+    <fa-icon [icon]="blocksIcon"></fa-icon>
+    Blocks
+  </a>
+  <span class="divider"></span>
+  <span class="info-text">ASSESTS</span>
+  <a class="router-link" routerLinkActive="/backend/blocks">
+    <fa-icon [icon]="mediaIcon"></fa-icon>
+    Media
+  </a>
+  <a class="router-link" routerLinkActive="/backend/blocks">
+    <fa-icon [icon]="layoutIcon"></fa-icon>
+    Layout
+  </a>
+</div>

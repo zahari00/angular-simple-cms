@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class ApiController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        // add ?page=n to get the page you want
+        $per_page = (int)$request->body['per_page'];
+        $results = $this->model::paginate($per_page);
+        return [
+            'success'   => true,
+            'data'      => [
+                'results' => $results->items(),
+                'pages_count'   => $results->total()
+            ]
+        ];
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $result = $this->model::where('id', $id)->first(); 
+        if(!isset($result) ||  !$result) {
+            return [
+                'success'   => false,
+                'errors'    => ['Not found']  
+            ];
+        }
+        return [
+            'success'   => true,
+            'data'      => $result
+        ];
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $item = $this->model::where('id', $id)->first();
+
+        if(!isset($item) || !$item) {
+            return [
+                'success'   => false,
+                'errors'    => ['Not found']
+            ];
+        }
+
+        if(!$item->delete()) {
+            return [
+                'success'   => false,
+                'errors'    => ['Server error']
+            ];
+        }
+
+        return [
+            'success'   => true,
+            'data'      => []
+        ];
+    }
+}
