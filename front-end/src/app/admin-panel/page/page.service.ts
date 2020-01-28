@@ -1,29 +1,23 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Page, PageListResponse } from "../../interfaces";
+import { Page } from "../../interfaces";
+import { RequestService } from 'src/app/http/request.service';
 
 const REQ_URL: string = "http://localhost:8000/api/pages/";
 
 @Injectable({
   providedIn: "root"
 })
-export class PageListService {
+export class PageService {
   errors: string[] = [];
   selectedPage: Page|undefined = undefined;
   pages: Page[]|undefined = undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: RequestService) {}
 
   getPages(page: number, per_page: number) {
     return this.http
-      .get<PageListResponse>(REQ_URL, {
-        params: {
-          'body[per_page]': per_page.toString(),
-          page: page.toString(),
-        }
-      })
+      .get(REQ_URL, { per_page, page })
       .subscribe(res => {
-        console.log(res);
         if(res.success) {
           this.pages =  res.data.results;
         }

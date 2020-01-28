@@ -7,10 +7,12 @@ import { AdminPanelComponent } from "./admin-panel.component";
 import { AppRoutingModule } from "../app-routing.module";
 // font awesome icons
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { PageListComponent } from "./page-list/page-list.component";
+import { PageListComponent } from "./page/page-list/page-list.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { BlockListComponent } from "./block-list/block-list.component";
+import { BlockListComponent } from "./block/block-list/block-list.component";
 import { ListComponent } from './common/list/list.component';
+import { CreatePageComponent } from './page/create-page/create-page.component';
+import { CreateBlockComponent } from './block/create-block/create-block.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ListComponent } from './common/list/list.component';
     PageListComponent,
     DashboardComponent,
     BlockListComponent,
-    ListComponent
+    ListComponent,
+    CreatePageComponent,
+    CreateBlockComponent
   ],
   imports: [CommonModule, AppRoutingModule, FontAwesomeModule]
 })

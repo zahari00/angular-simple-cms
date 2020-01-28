@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageListService } from './page-list.service';
+import { PageService } from '../page.service';
 
 @Component({
   selector: 'app-page-list',
@@ -15,16 +15,16 @@ export class PageListComponent implements OnInit {
   currentPage: number = 1
 
   get pages() {
-    return this.pageListService.pages; 
+    return this.pageService.pages; 
   }
 
-  constructor(private pageListService: PageListService) { }
+  constructor(private pageService: PageService) { }
 
   ngOnInit() {
     this.loadPages()
   }
 
   loadPages() {
-    this.pageListService.getPages(this.currentPage, this.pagesPerPage)
+    this.pageService.getPages(this.currentPage, this.pagesPerPage)
   }
 }

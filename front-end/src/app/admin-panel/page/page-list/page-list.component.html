@@ -1,7 +1,7 @@
 <app-admin-panel>
   <section class="main">
     <div class="btn-con">
-      <button class="btn btn-primary">Create new page</button>
+      <a class="btn btn-primary" routerLink="/backend/pages/create" >Create new page</a>
     </div>
     <admin-panel-list [items]="pages" model="pages"></admin-panel-list>
   </section>

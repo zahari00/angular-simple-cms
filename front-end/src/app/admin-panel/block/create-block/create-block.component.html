@@ -1,0 +1,25 @@
+<app-admin-panel>
+  <section class="main">
+    <div class="btn-con">
+      <a class="btn btn-action" routerLink="/backend/pages">View all</a>
+    </div>
+    <div class="form">
+      <div class="form-group">
+        <label for="type">Select block type</label>
+        <select id="type" class="form-control" (change)="changeType($event)">
+          <option value="hero">Hero block</option>
+          <option value="two-col">Two column block</option>
+          <option value="partners">Partners block</option>
+          <option value="text-block">Text block</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" class="form-control" type="text">
+      </div>
+      <form *ngIf="blockType == 'hero'" (submit)="submitHandler($event)">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </section>
+</app-admin-panel>
