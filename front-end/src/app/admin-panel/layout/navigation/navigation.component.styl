@@ -7,14 +7,33 @@
 a
     text-decoration none
     color #fff
+
 .router-link
     display block
     font-size .85rem
     padding 1rem
     opacity 0.8
     transition opacity 0.15s ease
+    
+    span
+        position relative
+        &:after
+            content ''
+            display block
+            position absolute
+            bottom -3px
+            left 4px
+            width 0
+            height 1px
+            background-color #fff
+            transition width 0.15s ease 
+
     &.active, &:hover
         opacity 1
+        font-weight 500
+
+        span:after
+            width 100%
 
 .info-text
     font-weight bold

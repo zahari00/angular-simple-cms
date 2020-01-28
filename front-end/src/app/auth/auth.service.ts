@@ -20,15 +20,12 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<ApiResponse>(AUTH_URL, {
+    this.http.post<ApiResponse>(AUTH_URL, {
         body: { email, password }
-      })
-      .subscribe(response => {
+      }).subscribe(response => {
         if (response.success) {
           this.authed = true;
-          Cookies.set('token', response.data.token);
-
+          Cookies.set('token', 'response.data.token');
           this.router.navigate(['/backend'])
         }
 

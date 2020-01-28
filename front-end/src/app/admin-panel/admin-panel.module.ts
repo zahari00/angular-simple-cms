@@ -10,6 +10,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { PageListComponent } from "./page-list/page-list.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { BlockListComponent } from "./block-list/block-list.component";
+import { ListComponent } from './common/list/list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BlockListComponent } from "./block-list/block-list.component";
     AdminPanelComponent,
     PageListComponent,
     DashboardComponent,
-    BlockListComponent
+    BlockListComponent,
+    ListComponent
   ],
   imports: [CommonModule, AppRoutingModule, FontAwesomeModule]
 })

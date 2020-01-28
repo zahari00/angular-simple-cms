@@ -1,0 +1,33 @@
+<div class="list-con" *ngIf="items">
+  <div class="tr">
+    <h5 class="content head-content">
+      ID
+    </h5>
+    <h5 class="content head-content">
+      Title
+    </h5>
+    <h5 class="content head-content">
+      Last update
+    </h5>
+    <h5 class="content head-content">
+      Actions
+    </h5>
+  </div>
+  <div class="tr item" *ngFor="let item of items">
+    <h6 class="content item-content">
+      {{item.id}}
+    </h6>
+    <h6 class="content item-content">
+      {{item.title}}
+    </h6>
+    <h6 class="content item-content">
+      {{item.updated_at}}
+    </h6>
+    <h6 class="content item-content">
+      <button class="btn btn-action" (click)="onEdit($event, item.id)">Edit</button>
+      <button class="btn btn-danger" (click)="onDelete($event, item.id)">
+        <fa-icon [icon]="deleteIcon"></fa-icon>
+      </button>
+    </h6>
+  </div>
+</div>

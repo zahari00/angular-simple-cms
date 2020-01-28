@@ -14,6 +14,10 @@ export class PageListComponent implements OnInit {
   // current page (pagination)
   currentPage: number = 1
 
+  get pages() {
+    return this.pageListService.pages; 
+  }
+
   constructor(private pageListService: PageListService) { }
 
   ngOnInit() {

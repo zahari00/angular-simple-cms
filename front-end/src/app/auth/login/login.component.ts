@@ -24,6 +24,6 @@ export class LoginComponent implements OnInit {
 
   login(e: any, email: string, password: string) {
     e.preventDefault();
-    const res = this.authService.login(email, password);    
+    this.authService.login(email, password);    
   }
 }

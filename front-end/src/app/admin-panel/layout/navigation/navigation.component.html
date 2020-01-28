@@ -1,27 +1,35 @@
 <div class="navigation">
   <h1 class="backend-title">
-    <a routerLink="/backend">
+    <a routerLink="/backend" href="/backend/">
       <fa-icon [icon]="mainIcon"></fa-icon>CMS
     </a>
   </h1>
   <span class="divider mt-0"></span>
   <span class="info-text">CONTENT</span>
-  <a class="router-link" routerLinkActive="/backend/pages">
+  <a class="router-link" routerLink="/backend/pages" routerLinkActive="active">
     <fa-icon [icon]="pagesIcon"></fa-icon>
-    Pages
+    <span>
+      Pages
+    </span>
   </a>
-  <a class="router-link" routerLinkActive="/backend/blocks">
+  <a class="router-link" href="/backend/blocks" routerLinkActive="/backend/blocks">
     <fa-icon [icon]="blocksIcon"></fa-icon>
-    Blocks
+    <span>
+      Blocks
+    </span>
   </a>
   <span class="divider"></span>
   <span class="info-text">ASSESTS</span>
-  <a class="router-link" routerLinkActive="/backend/blocks">
+  <a class="router-link" href="/backend/media" routerLinkActive="/backend/media">
     <fa-icon [icon]="mediaIcon"></fa-icon>
-    Media
+    <span>
+      Media
+    </span>
   </a>
-  <a class="router-link" routerLinkActive="/backend/blocks">
+  <a class="router-link" href="/backend/layout" routerLinkActive="/backend/blocks">
     <fa-icon [icon]="layoutIcon"></fa-icon>
-    Layout
+    <span>
+      Layout
+    </span>
   </a>
 </div>

@@ -9,12 +9,16 @@ import { PageListComponent } from './admin-panel/page-list/page-list.component';
 const routes: Routes = [
   {
     path: "backend",
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "backend/pages",
-    component: PageListComponent,
+    children: [
+      {
+        path: "",
+        component: DashboardComponent,
+      },
+      {
+        path: "pages",
+        component: PageListComponent,
+      },
+    ],
     canActivate: [AuthGuard]
   },
   {
