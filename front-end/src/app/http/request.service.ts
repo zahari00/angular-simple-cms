@@ -15,6 +15,11 @@ export class RequestService {
     return Cookies.get("token") ? true : false;
   }
 
+  /**
+   * Get data from the server
+   * @param url
+   * @param params
+   */
   get(url: string, params: any) {
     return this.http
       .get<ApiResponse>(url, {
@@ -31,6 +36,11 @@ export class RequestService {
       );
   }
 
+  /**
+   * Post data to the server
+   * @param url
+   * @param body
+   */
   post(url: string, body: object) {
     return this.http
       .post<ApiResponse>(
@@ -47,6 +57,27 @@ export class RequestService {
       .pipe(
         map((data: ApiResponse) => {
           if (!data.success) this.handleErrors(data.code, data.errors);
+          return data;
+        })
+      );
+  }
+
+  /**
+   * Upload files to the server
+   * @param url
+   * @param body
+   */
+  upload(url: string, formData: FormData) {
+    return this.http
+      .post<ApiResponse>(url, formData, {
+        headers: {
+          Authorization: Cookies.get("token") || ""
+        }
+      })
+      .pipe(
+        map((data: ApiResponse) => {
+          console.log(data);
+          // if (!data.success) this.handleErrors(data.code, data.errors);
           return data;
         })
       );

@@ -8,6 +8,7 @@ import { AuthModule } from "./auth/auth.module";
 // http module
 import { HttpClientModule } from "@angular/common/http";
 import { AdminPanelModule } from "./admin-panel/admin-panel.module";
+import { MediaModule } from './admin-panel/media/media.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { AdminPanelModule } from "./admin-panel/admin-panel.module";
     AuthModule,
     HttpClientModule,
     AdminPanelModule,
+    MediaModule
   ],
   bootstrap: [AppComponent]
 })

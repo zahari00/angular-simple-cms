@@ -1,0 +1,10 @@
+<app-admin-panel>
+  <section class="main">
+    <div class="btn-con">
+      <input (change)="uploadPhotos($event)" type="file" id="media-uploader" multiple accept=".png,.jpg,.jpeg" style="display: none;" />
+      <label class="btn btn-primary" for="media-uploader">Upload media</label>
+
+      <div *ngFor="let media of mediaList">{{media.status}}</div>
+    </div>
+  </section>
+</app-admin-panel>

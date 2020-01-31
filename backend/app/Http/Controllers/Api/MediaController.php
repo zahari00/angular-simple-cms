@@ -24,7 +24,7 @@ class MediaController extends ApiController
          * Validate file mime type
          */
         $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:jpeg,png,jpg,gif,webp,svg'
+            'media' => 'required|mimes:jpeg,png,jpg,gif,webp,svg'
         ]);
 
         // if validate fails abort with 400
@@ -34,7 +34,7 @@ class MediaController extends ApiController
 
         try {
             // get the file
-            $file = $request->file;
+            $file = $request->media;
 
             // get the public path
             $path = public_path('uploads') . '/130x130/';

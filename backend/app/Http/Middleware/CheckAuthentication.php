@@ -17,7 +17,7 @@ class CheckAuthentication
     public function handle($request, Closure $next)
     {
         $user = User::where('token', $request->header('Authorization'))->first();
-        
+
         if (!isset($user) || !$user) {
             return response()
                 ->json([
