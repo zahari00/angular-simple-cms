@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import Cookies from "js-cookie";
 import { ApiResponse } from "../interfaces";
 import { RequestService } from "../http/request.service";
-const AUTH_URL: string = "http://localhost:8000/api/login";
+
 
 @Injectable({
   providedIn: "root"
@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    this.http.post(AUTH_URL, { email, password }).subscribe(response => {
+    this.http.post("api/login", { email, password }).subscribe(response => {
       if (response.success) {
         this.authed = true;
         Cookies.set("token", response.data.token);

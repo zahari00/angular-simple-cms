@@ -1,0 +1,44 @@
+.media-container
+    display flex
+    justify-content flex-start
+    flex-wrap wrap
+    margin-top 16px
+
+    .media
+        width 15%
+        margin-right 2%
+        margin-bottom 2%
+        &:nth-child(6n)
+            margin-right 0
+
+    .bg
+        background-position center center
+        background-size cover
+        width 100%
+        padding-bottom 100%
+
+    .upload-loading
+        background-color #f0f
+        position relative
+        span
+            display block
+            position absolute
+            color #fff
+            width 100%
+            height 100%
+            text-align center
+
+            &:after
+                content 'Loading'
+
+    .upload-error, .upload-loading
+        display flex
+        justify-content center
+        align-items center
+    
+    .upload-error
+        background-color red
+        &:after
+            content 'Loading'
+            display block
+

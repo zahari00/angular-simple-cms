@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import Cookies from "js-cookie";
 import { ApiResponse } from "../interfaces";
 import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -20,9 +21,9 @@ export class RequestService {
    * @param url
    * @param params
    */
-  get(url: string, params: any) {
+  get(url: string, params: any = {}) {
     return this.http
-      .get<ApiResponse>(url, {
+      .get<ApiResponse>(`${environment.apirUrl}/${url}`, {
         params,
         headers: {
           Authorization: Cookies.get("token") || ""
@@ -44,7 +45,7 @@ export class RequestService {
   post(url: string, body: object) {
     return this.http
       .post<ApiResponse>(
-        url,
+        `${environment.apirUrl}/${url}`,
         {
           body
         },
@@ -69,7 +70,7 @@ export class RequestService {
    */
   upload(url: string, formData: FormData) {
     return this.http
-      .post<ApiResponse>(url, formData, {
+      .post<ApiResponse>(`${environment.apirUrl}/${url}`, formData, {
         headers: {
           Authorization: Cookies.get("token") || ""
         }
