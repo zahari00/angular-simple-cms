@@ -8,7 +8,7 @@ import { PageListComponent } from "./admin-panel/page/page-list/page-list.compon
 import { CreatePageComponent } from "./admin-panel/page/create-page/create-page.component";
 import { BlockListComponent } from "./admin-panel/block/block-list/block-list.component";
 import { CreateBlockComponent } from "./admin-panel/block/create-block/create-block.component";
-import { MediaListComponent } from './admin-panel/media/media-list/media-list.component';
+import { MediaComponent } from './admin-panel/media/page/media.component';
 
 const routes: Routes = [
   {
@@ -41,7 +41,7 @@ const routes: Routes = [
       },
       {
         path: "media",
-        component: MediaListComponent
+        component: MediaComponent
       }
     ],
     canActivate: [AuthGuard]

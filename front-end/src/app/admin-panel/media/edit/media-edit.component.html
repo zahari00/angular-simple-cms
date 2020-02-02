@@ -1,0 +1,22 @@
+<ng-template #noMediaSelected>
+  <div class="image-preview placeholder"></div>
+  <div class="small-field placeholder"></div>
+  <div class="field placeholder"></div>
+  <div class="field placeholder"></div>
+  <div class="field btn placeholder">Save</div>
+</ng-template>
+
+<ng-template #mediaSelected>
+  <div class="image-preview" [style.background-image]="mediaPath"></div>
+  <a class="small-field text-danger" (click)="deleteMedia($event)">delete permanently</a>
+  <div class="field placeholder"></div>
+  <div class="field placeholder"></div>
+  <div class="field btn placeholder">Save</div>
+</ng-template>
+
+<div class="edit-media-con">
+  <div *ngIf="loading" class="overlay">
+    <div class="loading">Loading<span>.</span><span>.</span><span>.</span></div>
+  </div>
+  <ng-container *ngIf="media then mediaSelected; else noMediaSelected"></ng-container>
+</div>

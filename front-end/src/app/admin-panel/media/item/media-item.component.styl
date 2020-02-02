@@ -1,0 +1,38 @@
+.bg
+    background-position center center
+    background-size cover
+    width 100%
+    padding-bottom calc(100% - 4px)
+    border 2px solid white
+
+.upload-error, .upload-loading
+    display flex
+    justify-content center
+    align-items center
+    position relative
+
+    .text-con
+        display block
+        position absolute
+        color #fff
+        width 100%
+        height 100%
+        font-weight 500
+        font-size 1.25rem
+        display flex
+        align-items center
+        justify-content center
+        top 0
+        left 0
+
+.media-ready
+    cursor pointer
+    transition border-color 0.15s ease
+    &:hover, &.active
+        border-color  rgba(78, 115, 223, 0.8)
+
+.upload-loading
+    background-color rgba(78, 115, 223, 0.8)
+
+.upload-error
+    background-color red

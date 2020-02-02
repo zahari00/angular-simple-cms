@@ -1,0 +1,12 @@
+<div *ngIf="data.status == 'ready'" [style.background-image]="getMediaPath(data.path)" class="media-ready bg"
+  (click)="onClick()" [ngClass]="{'active': isActive}"></div>
+
+<div *ngIf=" data.status=='loading'" class=" upload-loading loading bg">
+  <div class="text-con">
+    Loading<span>.</span><span>.</span><span>.</span>
+  </div>
+</div>
+
+<div *ngIf="data.status == 'error'" class="upload-error bg">
+  <div class="text-con">Error</div>
+</div>

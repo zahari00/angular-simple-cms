@@ -77,8 +77,26 @@ export class RequestService {
       })
       .pipe(
         map((data: ApiResponse) => {
-          console.log(data);
-          // if (!data.success) this.handleErrors(data.code, data.errors);
+          if (!data.success) this.handleErrors(data.code, data.errors);
+          return data;
+        })
+      );
+  }
+
+  /**
+   * Destroy item
+   * @param url
+   */
+  destroy(url: string) {
+    return this.http
+      .delete<ApiResponse>(`${environment.apirUrl}/${url}`, {
+        headers: {
+          Authorization: Cookies.get("token") || ""
+        }
+      })
+      .pipe(
+        map((data: ApiResponse) => {
+          if (!data.success) this.handleErrors(data.code, data.errors);
           return data;
         })
       );

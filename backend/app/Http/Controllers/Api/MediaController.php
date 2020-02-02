@@ -29,7 +29,14 @@ class MediaController extends ApiController
 
         // if validate fails abort with 400
         if ($validator->fails()) {
-            return response('No file is provided', 400);
+            return response()
+                ->json([
+                    'code'      => 400,
+                    'success'   => false,
+                    'errors'    => [
+                        'File type is invalid'
+                    ]
+                ]);
         }
 
         try {
@@ -57,7 +64,14 @@ class MediaController extends ApiController
                 $file_name .= $int;
                 $int++;
                 if ($int > 100) {
-                    return response('Failed to save file', 500);
+                    return response()
+                    ->json([
+                        'code'      => 500,
+                        'success'   => false,
+                        'errors'    => [
+                            'Failed to save image'
+                        ]
+                    ]);
                 }
             };
 
@@ -77,11 +91,14 @@ class MediaController extends ApiController
                 'data'      => $media
             ];
         } catch (Exception $e) {
-            print json_encode([
+            return response()
+            ->json([
+                'code'      => 500,
                 'success'   => false,
-                'errors'    => ['Server error']
+                'errors'    => [
+                    'Failed to save image'
+                ]
             ]);
-            exit();
         }
     }
 

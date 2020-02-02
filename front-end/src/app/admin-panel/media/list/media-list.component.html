@@ -1,0 +1,11 @@
+<div class="btn-con">
+  <input (change)="uploadPhotos($event)" type="file" id="media-uploader" multiple accept=".png,.jpg,.jpeg"
+    style="display: none;" />
+  <label class="btn btn-primary" for="media-uploader">Upload media</label>
+</div>
+<div class="media-container">
+  <div class="media-item" *ngFor="let media of mediaList">
+    <media-item [data]="media" (mediaClick)="selectMedia($event)" [isActive]="selectedMedia.id == media.id">
+    </media-item>
+  </div>
+</div>

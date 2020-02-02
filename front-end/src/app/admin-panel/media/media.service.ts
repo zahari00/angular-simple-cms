@@ -1,31 +1,43 @@
 import { Injectable } from "@angular/core";
 import { RequestService } from "src/app/http/request.service";
 import { Media } from "src/app/interfaces";
+import { environment } from "src/environments/environment";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class MediaService {
   mediaList: Media[] = [];
+  cache: object = {};
+  page: number = 1;
 
   constructor(private http: RequestService) {}
 
-  getAllMedia() {
+  getAllMedia(page: number = this.page) {
+    this.page = page;
+    if (this.cache[page]) return (this.mediaList = this.cache[page]);
+
     this.http
-      .get("api/media", { per_page: 24 })
+      .get("api/media", { per_page: 24, page })
       .subscribe(({ success, data }) => {
         // if (!success) {
         //   this.mediaList[index].status = "error";
         //   return;
         // }
-        this.mediaList = data.results.map((media: Media) => {
+        const results = data.results.map((media: Media) => {
           media.status = "ready";
           return media;
         });
+
+        this.cache[page] = results;
+        this.mediaList = results;
       });
   }
 
   uploadMedia(formData: FormData) {
+    this.cache = {};
+
     this.mediaList = [
       {
         id: -1,
@@ -39,7 +51,6 @@ export class MediaService {
 
     this.http.upload("api/media", formData).subscribe(({ success, data }) => {
       const index = this.getFirstLoadingMediaIndex();
-
       if (!success) {
         this.mediaList[index].status = "error";
         return;
@@ -50,6 +61,21 @@ export class MediaService {
         status: "ready"
       };
     });
+  }
+
+  destroyMedia(id: number) {
+    return this.http.destroy(`api/media/${id}`).pipe(
+      map(({ success }) => {
+        if (success) {
+          this.cache[this.page] = undefined;
+          this.getAllMedia();
+        }
+      })
+    );
+  }
+
+  getMediaImageUrl(path: string, size: string) {
+    return `${environment.mediaUrl}/${size}/${path}`;
   }
 
   getFirstLoadingMediaIndex() {

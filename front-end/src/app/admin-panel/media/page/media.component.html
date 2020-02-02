@@ -1,0 +1,10 @@
+<app-admin-panel>
+  <section class="main">
+    <div class="left">
+      <media-list [selectedMedia]="selectedMedia" (mediaItemClick)="selectMedia($event)"></media-list>
+    </div>
+    <aside class="right">
+        <media-edit [selectedMedia]="selectedMedia"></media-edit>
+    </aside>
+  </section>
+</app-admin-panel>

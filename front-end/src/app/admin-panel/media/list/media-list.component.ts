@@ -1,22 +1,25 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { MediaService } from "../media.service";
-import { environment } from "src/environments/environment";
+import { Media } from "src/app/interfaces";
 
 @Component({
-  selector: "app-media-list",
+  selector: "media-list",
   templateUrl: "./media-list.component.html",
   styleUrls: ["./media-list.component.styl"]
 })
 export class MediaListComponent implements OnInit {
+  @Input() selectedMedia: Media;
+
+  @Output() mediaItemClick: EventEmitter<Media> = new EventEmitter();
+
   get mediaList() {
-    console.log(this.mediaService.mediaList);
     return this.mediaService.mediaList;
   }
 
   constructor(private mediaService: MediaService) {}
 
   ngOnInit() {
-    this.mediaService.getAllMedia();
+    this.mediaService.getAllMedia(1);
   }
 
   uploadPhotos(e: Event) {
@@ -27,12 +30,11 @@ export class MediaListComponent implements OnInit {
     for (let i = 0; i < filesLength; i++) {
       const formData = new FormData();
       formData.append("media", files[i]);
-      console.log("here");
       this.mediaService.uploadMedia(formData);
     }
   }
 
-  getMediaPath(path: string): string {
-    return `url(${environment.mediaUrl}/130x130/${path})`;
+  selectMedia(media: Media) {
+    this.mediaItemClick.emit(media);
   }
 }
