@@ -13,6 +13,7 @@ import { MediaComponent } from './admin-panel/media/page/media.component';
 const routes: Routes = [
   {
     path: "backend",
+    canActivate: [AuthGuard],
     children: [
       {
         path: "",
@@ -44,7 +45,6 @@ const routes: Routes = [
         component: MediaComponent
       }
     ],
-    canActivate: [AuthGuard]
   },
   {
     path: "login",

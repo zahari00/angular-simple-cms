@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Block } from "../../interfaces";
 import { RequestService } from 'src/app/http/request.service';
 
-const RESOURCE_PATH: string = "http://localhost:8000/api/blocks/";
+const RESOURCE_PATH: string = "api/blocks/";
 
 @Injectable({
   providedIn: "root"

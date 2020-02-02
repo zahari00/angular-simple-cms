@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Page } from "../../interfaces";
 import { RequestService } from 'src/app/http/request.service';
 
-const REQ_URL: string = "http://localhost:8000/api/pages/";
+const REQ_URL: string = "api/pages/";
 
 @Injectable({
   providedIn: "root"
