@@ -102,6 +102,33 @@ export class RequestService {
       );
   }
 
+  /**
+   * Edit item
+   *
+   * @param url
+   * @param data
+   */
+  put(url: string, body: any) {
+    return this.http
+      .put<ApiResponse>(
+        `${environment.apirUrl}/${url}`,
+        {
+          body
+        },
+        {
+          headers: {
+            Authorization: Cookies.get("token") || ""
+          }
+        }
+      )
+      .pipe(
+        map((data: ApiResponse) => {
+          if (!data.success) this.handleErrors(data.code, data.errors);
+          return data;
+        })
+      );
+  }
+
   handleErrors(errorCode: number, errors: string[]): void {
     if (errorCode == 403) {
       Cookies.remove("token");

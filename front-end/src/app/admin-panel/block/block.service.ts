@@ -17,9 +17,7 @@ export class BlockService {
   getBlocks(page: number, per_page: number) {
     return this.http
       .get(RESOURCE_PATH, { per_page, page })
-      .subscribe(res => {
-        console.log(res);
-        
+      .subscribe(res => {        
         if(res.success) {                    
           this.blocks =  res.data.results;
         }

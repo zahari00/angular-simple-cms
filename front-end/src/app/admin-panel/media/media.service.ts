@@ -14,7 +14,11 @@ export class MediaService {
 
   constructor(private http: RequestService) {}
 
-  getAllMedia(page: number = this.page) {
+  /**
+   * Get all media
+   * @param page
+   */
+  getAllMedia(page: number = this.page): void {
     this.page = page;
     if (this.cache[page]) return (this.mediaList = this.cache[page]);
 
@@ -35,7 +39,11 @@ export class MediaService {
       });
   }
 
-  uploadMedia(formData: FormData) {
+  /**
+   * Upload media
+   * @param formData
+   */
+  uploadMedia(formData: FormData): void {
     this.cache = {};
 
     this.mediaList = [
@@ -43,6 +51,8 @@ export class MediaService {
         id: -1,
         status: "loading",
         path: "loading",
+        alt: "",
+        title: "",
         created_at: "loading",
         updated_at: "loading"
       },
@@ -63,6 +73,10 @@ export class MediaService {
     });
   }
 
+  /**
+   * Destroy media
+   * @param id
+   */
   destroyMedia(id: number) {
     return this.http.destroy(`api/media/${id}`).pipe(
       map(({ success }) => {
@@ -74,11 +88,36 @@ export class MediaService {
     );
   }
 
-  getMediaImageUrl(path: string, size: string) {
+  /**
+   * Update media item
+   * @param id
+   * @param title
+   * @param alt
+   */
+  updateMedia(id: number, title: string, alt: string) {
+    return this.http.put(`api/media/${id}`, { title, alt }).pipe(
+      map(({ success }) => {
+        if (success) {
+          this.cache[this.page] = undefined;
+          this.getAllMedia();
+        }
+      })
+    );
+  }
+
+  /**
+   * Get media image url
+   * @param path
+   * @param size
+   */
+  getMediaImageUrl(path: string, size: string): string {
     return `${environment.mediaUrl}/${size}/${path}`;
   }
 
-  getFirstLoadingMediaIndex() {
+  /**
+   * Get the first loading index of the current media array
+   */
+  getFirstLoadingMediaIndex(): number {
     const mediaLength = this.mediaList.length;
     for (let i = 0; i < mediaLength; i++) {
       const media = this.mediaList[i];

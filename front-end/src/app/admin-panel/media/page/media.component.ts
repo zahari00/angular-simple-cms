@@ -9,6 +9,8 @@ import { Media } from 'src/app/interfaces';
 export class MediaComponent {
   selectedMedia: Media = {
     id: -2,
+    alt: '',
+    title: '',
     status: "loading",
     path: "loading",
     created_at: "loading",
@@ -16,7 +18,6 @@ export class MediaComponent {
   };
   
   selectMedia(media: Media) {
-    console.log('selete media', media)
     this.selectedMedia = media;
   }
 }

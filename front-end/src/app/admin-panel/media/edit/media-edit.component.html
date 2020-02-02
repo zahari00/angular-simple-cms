@@ -9,9 +9,15 @@
 <ng-template #mediaSelected>
   <div class="image-preview" [style.background-image]="mediaPath"></div>
   <a class="small-field text-danger" (click)="deleteMedia($event)">delete permanently</a>
-  <div class="field placeholder"></div>
-  <div class="field placeholder"></div>
-  <div class="field btn placeholder">Save</div>
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input #title id="title" class="input form-control" placeholder="Title text" [value]="selectedMedia.title || ''" />
+  </div>
+  <div class="form-group">
+    <label for="alt">Alt:</label>
+    <input #alt id="alt" class="input form-control" placeholder="Alt text" [value]="selectedMedia.alt || ''" />
+  </div>
+  <div (click)="updateMedia($event, title.value, alt.value)" class="btn btn-primary">Save</div>
 </ng-template>
 
 <div class="edit-media-con">

@@ -15,7 +15,6 @@ export class MediaItemComponent implements OnInit {
   constructor(private mediaService: MediaService) { }
 
   ngOnInit() {
-    console.log(this.data)
   }
 
   onClick() {

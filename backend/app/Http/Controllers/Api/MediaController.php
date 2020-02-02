@@ -117,12 +117,16 @@ class MediaController extends ApiController
         
         if(!isset($media) || !$media) {
             return [
+                'code'      => 400,
                 'success'   => false,
-                'errors'    => ['Media not found']
+                'errors'    => [
+                    'Media not found'
+                ]
             ];
         }
-        $media->update($request->all());
+        $media->update($request->body);
         return [
+            'code'      => 200,
             'success'   => true,
             'data'      => $media  
         ];

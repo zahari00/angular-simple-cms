@@ -40,14 +40,14 @@ class SaveMedia
             mkdir($folder_path_original, 0777, true);
         }
 
-        if ($this->mime = '.svg') {
+        if ($this->mime === '.svg') {
             move_uploaded_file($this->media->path(), $folder_path_130 . '/' . $this->file_name);
             copy($folder_path_130 . '/' . $this->file_name, $folder_path_original . '/' . $this->file_name);
-        } else {
-            $image = Image::make($this->media->getRealPath());
-            $image->save($folder_path_original . '/' . $this->file_name, 70);
-            $image->fit(130, 130);
-            $image->save($folder_path_130 . '/' . $this->file_name, 70);
+            return;
         }
+        $image = Image::make($this->media->getRealPath());
+        $image->save($folder_path_original . '/' . $this->file_name, 70);
+        $image->fit(130, 130);
+        $image->save($folder_path_130 . '/' . $this->file_name, 70);
     }
 }

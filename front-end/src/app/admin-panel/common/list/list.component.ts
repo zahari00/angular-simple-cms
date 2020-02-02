@@ -13,7 +13,6 @@ export class ListComponent implements OnInit {
   deleteIcon  = faTrashAlt;
 
   get itemsget() {
-    console.log(this.items)
     return this.items
   }
   constructor() { }
