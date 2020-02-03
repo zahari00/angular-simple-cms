@@ -30,8 +30,12 @@ export class MediaEditComponent implements OnChanges {
 
   ngOnChanges(data: any) {
     const { selectedMedia } = data;
-
+    
     if (!selectedMedia || !selectedMedia.previousValue) return;
+
+    this.loading = true
+
+    setTimeout(() => (this.loading = false), 150)
 
     const prevId = selectedMedia.previousValue.id;
     const currId = selectedMedia.previousValue.id;
