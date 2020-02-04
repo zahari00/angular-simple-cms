@@ -1,35 +1,39 @@
+// Modules
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { HeaderComponent } from "./layout/header/header.component";
-import { FooterComponent } from "./layout/footer/footer.component";
-import { NavigationComponent } from "./layout/navigation/navigation.component";
 import { AppRoutingModule } from "../app-routing.module";
+import { CommonModule } from "@angular/common";
+import { SharedModule } from './shared/shared.module';
 
-// font awesome icons
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
-import { PageListComponent } from "./page/page-list/page-list.component";
+// Components
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { BlockListComponent } from "./block/block-list/block-list.component";
 import { ListComponent } from "./common/list/list.component";
+
+// Page CRUD
+import { PageListComponent } from "./page/page-list/page-list.component";
 import { CreatePageComponent } from "./page/create-page/create-page.component";
+
+// Block Crud
+import { BlockListComponent } from "./block/block-list/block-list.component";
 import { CreateBlockComponent } from "./block/create-block/create-block.component";
-import { AdminPanelComponent } from "./admin-panel.component";
+import { HeroComponent } from './block/types/hero/hero.component';
+import { TwoColumnsComponent } from './block/types/two-columns/two-columns.component';
+import { TextComponent } from './block/types/text/text.component';
+import { InputModule } from './input/input.module';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    NavigationComponent,
     PageListComponent,
     DashboardComponent,
     BlockListComponent,
     ListComponent,
     CreatePageComponent,
     CreateBlockComponent,
-    AdminPanelComponent,
+    HeroComponent,
+    TwoColumnsComponent,
+    TextComponent
   ],
-  exports: [AdminPanelComponent],
-  imports: [CommonModule, AppRoutingModule, FontAwesomeModule]
+  exports: [],
+  imports: [CommonModule, AppRoutingModule, SharedModule, InputModule]
 })
 export class AdminPanelModule {}

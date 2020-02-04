@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label [for]="name">{{label}}</label>
+  <ng-container [ngSwitch]="type">
+    <input-rte *ngSwitchCase="'rte'"></input-rte>
+    <media-picker *ngSwitchCase="'media'"></media-picker>
+  </ng-container>
+</div>

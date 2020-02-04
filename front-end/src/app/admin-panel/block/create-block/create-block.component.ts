@@ -13,8 +13,13 @@ export class CreateBlockComponent implements OnInit {
 
   ngOnInit() {}
 
-  changeType(e: any) {
-    this.blockType = e.target.value
+  changeType(type: string): void {
+    this.blockType = type;
     this.data = {}
+  }
+
+  submitHandler(e: Event) {
+    e.preventDefault();
+
   }
 }

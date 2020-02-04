@@ -1,4 +1,4 @@
-<app-admin-panel>
+<admin-panel-wrapper>
   <section class="main">
     <div class="btn-con">
       <a class="btn btn-action" routerLink="/backend/pages">View all</a>
@@ -6,20 +6,24 @@
     <div class="form">
       <div class="form-group">
         <label for="type">Select block type</label>
-        <select id="type" class="form-control" (change)="changeType($event)">
+        <select (change)="changeType($event.target.value)" id="type" class="form-control">
           <option value="hero">Hero block</option>
           <option value="two-col">Two column block</option>
-          <option value="partners">Partners block</option>
-          <option value="text-block">Text block</option>
+          <option value="text">Text block</option>
+          <!-- <option value="partners">Partners block</option> -->
         </select>
       </div>
       <div class="form-group">
         <label for="title">Title</label>
-        <input id="title" class="form-control" type="text">
+        <input id="title" #title class="form-control" type="text">
       </div>
-      <form *ngIf="blockType == 'hero'" (submit)="submitHandler($event)">
-        <button type="submit" class="btn btn-primary">Save</button>
-      </form>
+
+      <ng-container [ngSwitch]="blockType">
+        <block-hero *ngSwitchCase="'hero'"></block-hero>
+        <block-text *ngSwitchCase="'text'"></block-text>
+        <block-two-columns *ngSwitchCase="'two-col'"></block-two-columns>
+        <!-- <block-hero *ngSwitchCase="'hero'"></block-hero> -->
+      </ng-container>
     </div>
   </section>
-</app-admin-panel>
+</admin-panel-wrapper>

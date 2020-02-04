@@ -1,0 +1,7 @@
+<div class="overlay" (click)="onBackClick()">
+    <div class="overlay-con">
+        <div class="body shadow rounded" (click)="stopPropagation($event)">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
