@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "../app-routing.module";
 import { CommonModule } from "@angular/common";
 import { SharedModule } from './shared/shared.module';
+import { InputModule } from './input/input.module';
+import { MediaModule } from './media/media.module';
 
 
 // Components
@@ -19,7 +21,6 @@ import { CreateBlockComponent } from "./block/create-block/create-block.componen
 import { HeroComponent } from './block/types/hero/hero.component';
 import { TwoColumnsComponent } from './block/types/two-columns/two-columns.component';
 import { TextComponent } from './block/types/text/text.component';
-import { InputModule } from './input/input.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,6 @@ import { InputModule } from './input/input.module';
     TextComponent
   ],
   exports: [],
-  imports: [CommonModule, AppRoutingModule, SharedModule, InputModule]
+  imports: [CommonModule, AppRoutingModule, SharedModule, InputModule, MediaModule]
 })
 export class AdminPanelModule {}

@@ -53,6 +53,8 @@ body
 .btn-danger 
     background-image: linear-gradient(to right, #D31027 0%, #EA384D 51%, #D31027 100%)
 
+.text-info
+    color #17a2b8
 
 .form-group
     margin-bottom: 1rem;
@@ -60,6 +62,7 @@ body
 label 
     display: block;
     margin-bottom: .5rem;
+    color #858796
 
 .form 
     padding 2rem 0
@@ -88,6 +91,7 @@ label
 
 
 a
+    color #224abe
     cursor pointer
     &.text-danger
         &:hover
@@ -121,3 +125,84 @@ a
     
     100% 
       opacity: .2;
+
+
+.popover 
+    position: absolute;
+    top: 46px;
+    left: 0px;
+    z-index: 1060;
+    display: block;
+    max-width: 276px;
+    line-height: 1.5;
+    font-size: .875rem;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+
+.popover-body 
+    padding: .5rem .75rem;
+    color: #212529;
+
+.arrow 
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 0 0.3rem;
+    top: -6px;
+    left: 32px;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,.2);
+    border-left: 1px solid rgba(0,0,0,.2);
+    transform: rotate(45deg);
+
+.between
+    display flex
+    align-items center
+    justify-content flex-end
+
+    a:first-child
+        margin-right 1.75rem
+
+.checkbox-con
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+
+.checkbox
+    display none
+    &:checked
+        &+.checkbox-label
+            &:after
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e")
+                border-color: #007bff;
+                background-color: #007bff;
+                
+.checkbox-label
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    display flex
+    align-items center
+    justify-content flex-start
+
+    &:after
+        position: absolute;
+        top: 2px;
+        left: -1.5rem;
+        max-width none
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        background-color: #fff;
+        border: #adb5bd solid 1px;
+        border-radius: .25rem;
+        color: #fff;
+        background-position center center
+        background-repeat no-repeat
+    

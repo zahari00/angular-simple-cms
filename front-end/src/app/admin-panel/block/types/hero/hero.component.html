@@ -1,3 +1,12 @@
-<admin-input #backgroundInput label="Background image" name="background_image" type="media"></admin-input>
-<admin-input #bodyInput label="Body" name="body" type="rte"></admin-input>
-{{log(backgroundInput)}}
+<div class="form-group">
+    <label>Background image</label>
+    <media-picker #image></media-picker>
+</div>
+<div class="form-group">
+    <label>CTA</label>
+    <input-link #image></input-link>
+</div>
+<div class="form-group">
+    <label for="body" >Body</label>
+    <textarea id="body" class="form-control" rows="6" #body></textarea>
+</div>
