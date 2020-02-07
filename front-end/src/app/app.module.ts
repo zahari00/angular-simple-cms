@@ -8,7 +8,7 @@ import { AuthModule } from "./auth/auth.module";
 // http module
 import { HttpClientModule } from "@angular/common/http";
 import { AdminPanelModule } from "./admin-panel/admin-panel.module";
-import { MediaModule } from './admin-panel/media/media.module';
+import { MediaModule } from "./admin-panel/media/media.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +20,7 @@ import { MediaModule } from './admin-panel/media/media.module';
     AdminPanelModule,
     MediaModule
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -78,7 +78,7 @@ export class MediaService {
    * @param id
    */
   destroyMedia(id: number) {
-    return this.http.destroy(`api/media/${id}`).pipe(
+    return this.http.delete(`api/media/${id}`).pipe(
       map(({ success }) => {
         if (success) {
           this.cache[this.page] = undefined;

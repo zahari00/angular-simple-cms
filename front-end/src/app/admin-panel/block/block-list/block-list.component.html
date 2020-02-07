@@ -3,6 +3,6 @@
     <div class="btn-con">
       <a class="btn btn-primary" routerLink="/backend/blocks/create">Create new block</a>
     </div>
-    <admin-panel-list [items]="blocks" model="blocks"></admin-panel-list>
+    <admin-panel-list [items]="blocks" model="blocks" (delete)="deleteBlock($event)"></admin-panel-list>
   </section>
 </admin-panel-wrapper>

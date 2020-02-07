@@ -3,6 +3,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { GuestGuard } from "./auth/guest.guard";
+
+// admin panel
 import { DashboardComponent } from "./admin-panel/dashboard/dashboard.component";
 import { PageListComponent } from "./admin-panel/page/page-list/page-list.component";
 import { CreatePageComponent } from "./admin-panel/page/create-page/create-page.component";
@@ -13,7 +15,7 @@ import { MediaComponent } from './admin-panel/media/page/media.component';
 const routes: Routes = [
   {
     path: "backend",
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: "",

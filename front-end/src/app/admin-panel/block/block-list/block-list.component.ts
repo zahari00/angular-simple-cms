@@ -27,4 +27,8 @@ export class BlockListComponent implements OnInit {
   loadBlocks() {
     this.blockService.getBlocks(this.currentPage, this.pagesPerPage)
   }
+
+  deleteBlock({ id }) {
+    this.blockService.deleteBlock(id);
+  }
 }
