@@ -7,6 +7,7 @@ import { FooterComponent } from "./footer/footer.component";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { OverlayComponent } from "./overlay/overlay.component";
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,9 @@ import { OverlayComponent } from "./overlay/overlay.component";
     NavigationComponent,
     HeaderComponent,
     FooterComponent,
-    OverlayComponent
+    OverlayComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, AppRoutingModule],
   exports: [PanelWrapperComponent, FontAwesomeModule, OverlayComponent]
 })
 export class SharedModule {}

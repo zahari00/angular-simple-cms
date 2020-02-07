@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Block } from "../../interfaces";
 import { RequestService } from "src/app/http/request.service";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 const RESOURCE_PATH: string = "api/blocks/";
 
@@ -42,9 +42,17 @@ export class BlockService {
       })
       .subscribe(res => {
         if (res.success) {
-          this.router.navigate(['backend', 'blocks']);
-          return
+          this.router.navigate(["backend", "blocks"]);
+          return;
         }
       });
+  }
+
+  deleteBlock(id: number) {
+    this.http.delete(`api/blocks/${id}`).subscribe(res => {
+      if (!res.success) return;
+
+      this.blocks = this.blocks.filter(block => block.id !== id);
+    });
   }
 }

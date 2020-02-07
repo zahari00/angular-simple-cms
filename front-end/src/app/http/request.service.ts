@@ -87,7 +87,7 @@ export class RequestService {
    * Destroy item
    * @param url
    */
-  destroy(url: string) {
+  delete(url: string) {
     return this.http
       .delete<ApiResponse>(`${environment.apirUrl}/${url}`, {
         headers: {

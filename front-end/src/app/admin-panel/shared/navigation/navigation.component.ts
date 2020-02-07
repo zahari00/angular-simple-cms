@@ -7,11 +7,12 @@ import { faImages, faCookieBite } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ["./navigation.component.styl"]
 })
 export class NavigationComponent implements OnInit {
-  mainIcon = faCookieBite; 
+  mainIcon = faCookieBite;
   mediaIcon = faImages;
   pagesIcon = faImages;
   blocksIcon = faImages;
   layoutIcon = faImages;
+  
   constructor() {}
 
   ngOnInit() {}
