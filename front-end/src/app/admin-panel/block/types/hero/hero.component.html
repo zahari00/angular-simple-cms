@@ -1,12 +1,28 @@
-<div class="form-group">
-    <label>Background image</label>
-    <media-picker #image></media-picker>
+<!-- Media -->
+<div class="form-group" [class.invalid]="errors.image">
+  <label>Background image</label>
+  <media-picker #image></media-picker>
+  <p class="error-response" *ngIf="errors.image">{{errors.image}}</p>
 </div>
-<div class="form-group">
-    <label>CTA</label>
-    <input-link #image></input-link>
+<!-- END Media -->
+
+<!-- CTA -->
+<div class="form-group" [class.invalid]="errors.cta">
+  <label>CTA</label>
+  <input-link #cta></input-link>
+  <p class="error-response" *ngIf="errors.cta">{{errors.cta}}</p>
 </div>
+<!-- END CTA -->
+
+<!-- Body -->
+<div class="form-group" [class.invalid]="errors.body">
+  <label for="body">Body</label>
+  <textarea #body id="body" class="form-control" rows="6" #body></textarea>
+  <p class="error-response" *ngIf="errors.body">{{errors.body}}</p>
+</div>
+<!-- END Body -->
+
 <div class="form-group">
-    <label for="body" >Body</label>
-    <textarea id="body" class="form-control" rows="6" #body></textarea>
+  <button class="btn btn-primary" (click)="validateData(image.value, cta.value, body.value)">Save</button>
+  <p class="error-response" *ngIf="!valid">Please fill all fields correctly</p>
 </div>

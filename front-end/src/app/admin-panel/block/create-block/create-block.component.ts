@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { BlockService } from "../block.service";
 
 @Component({
   selector: "app-create-block",
@@ -6,20 +7,34 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./create-block.component.styl"]
 })
 export class CreateBlockComponent implements OnInit {
-  data: any = {};
-  blockType: string = "hero";
+  type: string = 'hero';
 
-  constructor() {}
+  errors: Errors = {
+    title: false
+  };
+
+  constructor(private blockService: BlockService) {}
 
   ngOnInit() {}
 
-  changeType(type: string): void {
-    this.blockType = type;
-    this.data = {}
+  changeType(type: string) {
+    console.log(type)
+    this.type = type
   }
 
-  submitHandler(e: Event) {
-    e.preventDefault();
 
+  submitHandler(title: string, data: any) {
+    if (!data) return;
+
+    if (!title) {
+      this.errors.title = "Title is required";
+      return;
+    }
+
+    this.blockService.updateBlock(false, this.type, title, data);
   }
+}
+
+interface Errors {
+  title: boolean | string;
 }

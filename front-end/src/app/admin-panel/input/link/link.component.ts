@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Link } from "src/app/interfaces";
 
 @Component({
   selector: "input-link",
@@ -12,35 +13,60 @@ export class LinkComponent {
     title: ""
   };
 
-  showPicker: boolean = true;
+  valid = true;
+
+  errors: any = {
+    title: false,
+    url: false
+  };
+
+  showPicker: boolean = false;
   showOpenUrlModel: boolean = false;
 
   saveChanges(url: string, title: string, target: any) {
+    this.errors = {
+      title: false,
+      url: false
+    };
+
+    this.valid = true;
+
+    if (!url) {
+      this.errors.url = "Url is required";
+      this.valid = false;
+    }
+
+    if (!title) {
+      this.valid = false;
+      this.errors.title = "Title is required";
+    }
+
+    if (!this.valid) return;
+
     this.value = {
-      target: target ? '_blank' : '_self',
+      target: target ? "_blank" : "_self",
       url,
       title
     };
-    this.showPicker = false
+    this.showPicker = false;
   }
 
-  togglePicker() {
+  togglePicker(e: any = false) {
+    if (e) e.preventDefault();
+
     this.showPicker = !this.showPicker;
   }
 
-  hideUrlModal(e: any = false) {
-    if(e) e.preventDefault()
+  toggleUrlModal(e: any = false) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
 
-    this.showOpenUrlModel = false
+    this.showOpenUrlModel = !this.showOpenUrlModel;
   }
 
   log(data: any) {
     console.log(data);
   }
-}
-
-interface Link {
-  target: "_self" | "_blank";
-  url: string;
-  title: string;
 }

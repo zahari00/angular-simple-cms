@@ -1,5 +1,9 @@
 <div *ngIf="value?.id" class="preview rounded bg" [style.background-image]="image"></div>
-<button class="btn btn-primary" id="upload-media" (focus)="toggleOverlay(true)" type="button">Select media</button>
+<button class="btn btn-primary" id="upload-media" (focus)="toggleOverlay(true)" type="button">
+  <span>
+    Select media
+  </span>
+</button>
 
 
 <admin-panel-overlay *ngIf="showOverlay" (hideOverlay)="toggleOverlay(false)">

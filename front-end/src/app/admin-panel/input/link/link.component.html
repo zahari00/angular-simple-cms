@@ -1,38 +1,46 @@
 <div class="link-input">
-  <div class="btn btn-action" (click)="togglePicker()">
+  <button type="button" class="btn btn-primary" (focus)="togglePicker()">
     <span *ngIf="!value.url">Select link</span>
-    <!-- TODO -->
-    <a *ngIf="value.url" [href]="value.url">{{value.title}}</a>
-  </div>
-  <div class="popover fade bs-popover-bottom show" *ngIf="showPicker">
+    <a class="text-white" *ngIf="value.url" [href]="value.url" (click)="toggleUrlModal($event)">{{value.title}}</a>
+  </button> 
+
+  <div class="popover" *ngIf="showPicker">
     <div class="arrow"></div>
     <div class="popover-body">
-      <div class="form-group">
+
+      <div class="form-group" [class.invalid]="errors.url">
         <label for="link_url">Url</label>
         <input type="text" placeholder="/about-us" #url class="form-control">
+        <p *ngIf="errors.url" class="error-response">{{errors.url}}</p>
       </div>
-      <div class="form-group">
+
+      <div class="form-group" [class.invalid]="errors.title">
         <label for="link_title">Title</label>
         <input type="text" placeholder="Title" #title class="form-control">
+        <p *ngIf="errors.title" class="error-response">{{errors.title}}</p>
       </div>
+
       <div class="checkbox-con">
         <input type="checkbox" class="checkbox" #newTab id="open_link_in_new_tab">
         <label class="checkbox-label" for="open_link_in_new_tab">Open link in new tab?</label>
       </div>
+
       <div class="between">
-        <a href="#" (click)="hideUrlModal($event)" class="text-info">Cancel</a>
+        <a href="#" (click)="togglePicker($event)" class="text-info">Cancel</a>
         <button class="btn btn-primary" (click)="saveChanges(url.value, title.value, newTab.checked)">Save</button>
       </div>
     </div>
   </div>
-  <div class="popover fade bs-popover-bottom show" *ngIf="showOpenUrlModel">
+
+  <div class="popover" *ngIf="showOpenUrlModel">
     <div class="arrow"></div>
     <div class="popover-body">
       Open link?
       <div class="between">
-        <a href="#" (click)="hideUrlModal($event)">No</a>
-        <a [href]="value.url" target="_blank" (click)="hideUrlModal($event)">Yes</a>
+        <a href="#" (click)="toggleUrlModal($event)">No</a>
+        <a [href]="value.url" target="_blank" (click)="toggleUrlModal($event)">Yes</a>
       </div>
     </div>
   </div>
+
 </div>

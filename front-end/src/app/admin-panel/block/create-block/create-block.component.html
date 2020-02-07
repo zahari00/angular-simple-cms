@@ -1,12 +1,12 @@
 <admin-panel-wrapper>
   <section class="main">
     <div class="btn-con">
-      <a class="btn btn-action" routerLink="/backend/pages">View all</a>
+      <a class="btn btn-action" routerLink="/backend/blocks">View all</a>
     </div>
     <div class="form">
       <div class="form-group">
         <label for="type">Select block type</label>
-        <select (change)="changeType($event.target.value)" id="type" class="form-control">
+        <select #inputType id="type" class="form-control" (change)="changeType(inputType.value)">
           <option value="hero">Hero block</option>
           <option value="two-col">Two column block</option>
           <option value="text">Text block</option>
@@ -18,10 +18,10 @@
         <input id="title" #title class="form-control" type="text">
       </div>
 
-      <ng-container [ngSwitch]="blockType">
-        <block-hero *ngSwitchCase="'hero'"></block-hero>
-        <block-text *ngSwitchCase="'text'"></block-text>
-        <block-two-columns *ngSwitchCase="'two-col'"></block-two-columns>
+      <ng-container [ngSwitch]="type">
+        <block-hero *ngSwitchCase="'hero'" (submit)="submitHandler(title.value, $event)"></block-hero>
+        <block-text *ngSwitchCase="'text'" (submit)="submitHandler(title.value, $event)"></block-text>
+        <block-two-columns *ngSwitchCase="'two-col'" (submit)="submitHandler(title.value, $event)"></block-two-columns>
         <!-- <block-hero *ngSwitchCase="'hero'"></block-hero> -->
       </ng-container>
     </div>

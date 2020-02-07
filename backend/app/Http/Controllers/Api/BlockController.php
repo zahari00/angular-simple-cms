@@ -19,10 +19,10 @@ class BlockController extends ApiController
     {
         // TODO image uploader and validation
         $block = Block::create($request->body);
-        return [
+        return  response([
             'success'   => true,
             'data'      => $block
-        ];
+        ]);
     }
 
     /**
@@ -35,17 +35,17 @@ class BlockController extends ApiController
     public function update(Request $request, $id)
     {
         $block = Block::where('id', $id)->first();
-        if(!isset($block) || !$block) {
-            return [
+        if (!isset($block) || !$block) {
+            return response([
                 'success'   => false,
                 'errors'    => ['Block not found']
-            ];  
+            ], 404);
         }
 
         $block->update($request->body);
-        return [
+        return  response([
             'success'   => true,
             'data'      => $block
-        ];
+        ]);
     }
 }

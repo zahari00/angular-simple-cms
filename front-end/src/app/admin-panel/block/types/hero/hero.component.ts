@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
+import { Link } from "src/app/interfaces";
 
 @Component({
   selector: "block-hero",
@@ -6,33 +7,43 @@ import { Component } from "@angular/core";
   styleUrls: ["./hero.component.styl"]
 })
 export class HeroComponent {
-  value: Link = {
-    target: "_self",
-    url: "",
-    title: ""
+  @Output() submit: EventEmitter<any> = new EventEmitter();
+
+  errors: Errors = {
+    image: false,
+    cta: false,
+    body: false
   };
 
-  showPicker: boolean = false
+  valid: boolean = true;
 
-  saveChanges(url: string, title: string, target: any) {
-    this.value = {
-      target,
-      url,
-      title
-    };
-  }
+  validateData(image: any, cta: Link, body: string) {
+    this.valid = true;
+    this.errors = { image: false, cta: false, body: false };
 
-  togglePicker() {
-    this.showPicker = !this.togglePicker
-  }
+    if (!image.id) {
+      this.errors.image = "Image is required";
+      this.valid = false;
+    }
 
-  log(data: any) {
-    console.log(data);
+    if (!cta.url) {
+      this.errors.cta = "CTA is required";
+      this.valid = false;
+    }
+
+    if (!body) {
+      this.errors.body = "Body is required";
+      this.valid = false;
+    }
+
+    if (!this.valid) return;
+    alert('emiting');
+    this.submit.emit({ image, cta, body });
   }
 }
 
-interface Link {
-  target: "_self" | "_blank";
-  url: string;
-  title: string;
+interface Errors {
+  image: boolean | string;
+  cta: boolean | string;
+  body: boolean | string;
 }
