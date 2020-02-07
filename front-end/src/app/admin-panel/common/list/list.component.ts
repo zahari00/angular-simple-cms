@@ -32,3 +32,4 @@ export class ListComponent implements OnInit {
     this.delete.emit({ id });
   }
 }
+
