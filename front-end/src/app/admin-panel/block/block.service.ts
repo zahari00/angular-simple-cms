@@ -10,7 +10,9 @@ const RESOURCE_PATH: string = "api/blocks/";
 })
 export class BlockService {
   errors: string[] = [];
-  selectedPage: Block | undefined = undefined;
+  selectedBlock: Block | undefined = undefined;
+  blockNotFound: boolean = false;
+  loading: boolean = false;
   blocks: Block[] | undefined = undefined;
 
   constructor(private http: RequestService, private router: Router) {}
@@ -20,6 +22,20 @@ export class BlockService {
       if (res.success) {
         this.blocks = res.data.results;
       }
+    });
+  }
+
+  getBlock(id: number) {
+    this.loading = true
+
+    this.http.get(`api/blocks/${id}`).subscribe(res => {
+      if(!res.success) {
+        this.loading = false;
+        this.blockNotFound = true;
+        return
+      }
+
+      this.selectedBlock = res.data
     });
   }
 

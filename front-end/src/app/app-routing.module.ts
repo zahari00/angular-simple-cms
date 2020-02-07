@@ -9,8 +9,8 @@ import { DashboardComponent } from "./admin-panel/dashboard/dashboard.component"
 import { PageListComponent } from "./admin-panel/page/page-list/page-list.component";
 import { CreatePageComponent } from "./admin-panel/page/create-page/create-page.component";
 import { BlockListComponent } from "./admin-panel/block/block-list/block-list.component";
-import { CreateBlockComponent } from "./admin-panel/block/create-block/create-block.component";
-import { MediaComponent } from './admin-panel/media/page/media.component';
+import { CreateBlockComponent } from "./admin-panel/block/block-form/block-form.component";
+import { MediaComponent } from "./admin-panel/media/page/media.component";
 
 const routes: Routes = [
   {
@@ -43,10 +43,14 @@ const routes: Routes = [
         component: CreateBlockComponent
       },
       {
+        path: "blocks/:blockId",
+        component: CreateBlockComponent
+      },
+      {
         path: "media",
         component: MediaComponent
       }
-    ],
+    ]
   },
   {
     path: "login",

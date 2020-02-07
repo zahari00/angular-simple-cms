@@ -4,7 +4,8 @@
       <a class="btn btn-action" routerLink="/backend/blocks">View all</a>
     </div>
     <div class="form">
-      <div class="form-group">
+      {{ block | json }}
+      <div class="form-group" *ngIf="!block">
         <label for="type">Select block type</label>
         <select #inputType id="type" class="form-control" (change)="changeType(inputType.value)">
           <option value="hero">Hero block</option>

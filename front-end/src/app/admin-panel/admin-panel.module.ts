@@ -17,7 +17,7 @@ import { CreatePageComponent } from "./page/create-page/create-page.component";
 
 // Block Crud
 import { BlockListComponent } from "./block/block-list/block-list.component";
-import { CreateBlockComponent } from "./block/create-block/create-block.component";
+import { CreateBlockComponent } from "./block/block-form/block-form.component";
 import { HeroComponent } from './block/types/hero/hero.component';
 import { TwoColumnsComponent } from './block/types/two-columns/two-columns.component';
 import { TextComponent } from './block/types/text/text.component';
