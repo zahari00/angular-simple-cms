@@ -30,17 +30,19 @@ export class MediaEditComponent implements OnChanges {
 
   ngOnChanges(data: any) {
     const { selectedMedia } = data;
-    
+
     if (!selectedMedia || !selectedMedia.previousValue) return;
 
-    this.loading = true
+    this.loading = true;
 
-    setTimeout(() => (this.loading = false), 150)
+    setTimeout(() => (this.loading = false), 150);
 
+    const currId = this.selectedMedia.id;
     const prevId = selectedMedia.previousValue.id;
-    const currId = selectedMedia.previousValue.id;
 
-    if (prevId !== currId) this.deleted = false;
+    if (prevId !== currId) {
+      this.deleted = false;
+    }
   }
 
   updateMedia(e: Event, title: string, alt: string) {
