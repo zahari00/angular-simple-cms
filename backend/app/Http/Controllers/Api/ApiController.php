@@ -40,6 +40,11 @@ class ApiController extends Controller
                 'errors'    => ['Not found']  
             ];
         }
+        
+        if($result->data) {
+            $result->data = json_decode($result->data);
+        }
+        
         return [
             'success'   => true,
             'data'      => $result

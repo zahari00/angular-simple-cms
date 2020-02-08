@@ -26,27 +26,29 @@ export class BlockService {
   }
 
   getBlock(id: number) {
-    this.loading = true
+    this.loading = true;
 
     this.http.get(`api/blocks/${id}`).subscribe(res => {
-      if(!res.success) {
+      if (!res.success) {
         this.loading = false;
         this.blockNotFound = true;
-        return
+        return;
       }
 
-      this.selectedBlock = res.data
+      this.loading = false;
+      this.selectedBlock = res.data;
     });
   }
 
-  updateBlock(
-    id: boolean | number = false,
-    type: string,
-    title: string,
-    data: Block
-  ) {
+  saveBlock(id: number = 0, type: string, title: string, data: Block) {
     if (id) {
-      // update
+      this.http
+        .put(`api/blocks/${id}`, {
+          type,
+          title,
+          data: JSON.stringify(data)
+        })
+        .subscribe(() => {});
       return;
     }
 

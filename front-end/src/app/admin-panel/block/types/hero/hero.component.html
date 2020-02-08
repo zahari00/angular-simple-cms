@@ -1,7 +1,7 @@
 <!-- Media -->
 <div class="form-group" [class.invalid]="errors.image">
   <label>Background image</label>
-  <media-picker #image></media-picker>
+  <media-picker #image [defaultValue]="data.image"></media-picker>
   <p class="error-response" *ngIf="errors.image">{{errors.image}}</p>
 </div>
 <!-- END Media -->
@@ -9,7 +9,7 @@
 <!-- CTA -->
 <div class="form-group" [class.invalid]="errors.cta">
   <label>CTA</label>
-  <input-link #cta></input-link>
+  <input-link #cta [defaultValue]="data.cta"></input-link>
   <p class="error-response" *ngIf="errors.cta">{{errors.cta}}</p>
 </div>
 <!-- END CTA -->
@@ -17,7 +17,7 @@
 <!-- Body -->
 <div class="form-group" [class.invalid]="errors.body">
   <label for="body">Body</label>
-  <textarea #body id="body" class="form-control" rows="6" #body></textarea>
+  <textarea #body id="body" [value]="data?.body" class="form-control" rows="6" #body></textarea>
   <p class="error-response" *ngIf="errors.body">{{errors.body}}</p>
 </div>
 <!-- END Body -->

@@ -11,11 +11,15 @@ import { Block } from "src/app/interfaces";
 export class CreateBlockComponent implements OnInit {
   type: string = "hero";
 
-  loading: boolean = true;
-
   errors: Errors = {
     title: false
   };
+
+  blockId: number;
+
+  get loading() {
+    return this.blockService.loading;
+  }
 
   constructor(
     private blockService: BlockService,
@@ -25,21 +29,17 @@ export class CreateBlockComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const blockId: number = +params.get("blockId");
-      if (!blockId) {
-        this.loading = false;
-        return;
-      }
-
+      if (!blockId) return;
+      this.blockId = blockId;
       this.blockService.getBlock(blockId);
     });
   }
 
   get block() {
-    return this.blockService.selectedBlock
+    return this.blockService.selectedBlock;
   }
 
   changeType(type: string) {
-    console.log(type);
     this.type = type;
   }
 
@@ -51,7 +51,7 @@ export class CreateBlockComponent implements OnInit {
       return;
     }
 
-    this.blockService.updateBlock(false, this.type, title, data);
+    this.blockService.saveBlock(this.blockId, this.type, title, data);
   }
 }
 

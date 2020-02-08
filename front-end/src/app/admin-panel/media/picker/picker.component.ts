@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Media } from "src/app/interfaces";
 import { MediaService } from "../media.service";
 
@@ -8,6 +8,8 @@ import { MediaService } from "../media.service";
   styleUrls: ["./picker.component.styl"]
 })
 export class PickerComponent implements OnInit {
+  @Input() defaultValue: false|Media = false;
+
   value: Media = {
     id: 0,
     status: "",
@@ -27,7 +29,13 @@ export class PickerComponent implements OnInit {
     return `url(${url})`;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(!this.defaultValue) return;
+    this.value = {
+      ...this.defaultValue,
+      status: 'ready'
+    }
+  }
 
   toggleOverlay(showOverlay: boolean) {
     this.showOverlay = showOverlay;

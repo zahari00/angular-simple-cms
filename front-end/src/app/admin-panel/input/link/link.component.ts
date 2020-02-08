@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Link } from "src/app/interfaces";
 
 @Component({
@@ -6,12 +6,19 @@ import { Link } from "src/app/interfaces";
   templateUrl: "./link.component.html",
   styleUrls: ["./link.component.styl"]
 })
-export class LinkComponent {
+export class LinkComponent implements OnInit {
+  @Input() defaultValue: false|Link = false;
+
   value: Link = {
     target: "_self",
     url: "",
     title: ""
   };
+
+  ngOnInit() {
+    if(!this.defaultValue) return;
+    this.value = this.defaultValue;
+  }
 
   valid = true;
 

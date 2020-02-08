@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from "@angular/core";
 import { Link } from "src/app/interfaces";
 
 @Component({
@@ -7,6 +7,7 @@ import { Link } from "src/app/interfaces";
   styleUrls: ["./hero.component.styl"]
 })
 export class HeroComponent {
+  @Input() data: any
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
   errors: Errors = {
@@ -37,7 +38,6 @@ export class HeroComponent {
     }
 
     if (!this.valid) return;
-    alert('emiting');
     this.submit.emit({ image, cta, body });
   }
 }
