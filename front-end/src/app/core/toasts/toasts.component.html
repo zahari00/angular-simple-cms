@@ -1,0 +1,6 @@
+<div class="toasts-container">
+  <div *ngFor="let toast of toasts; let i = index;" class="toast shadow" [ngClass]="getToastClasses(toast)"
+    (click)="removeToast(i)">
+    {{toast.message}}
+  </div>
+</div>

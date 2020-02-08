@@ -1,19 +1,23 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Router } from "@angular/router";
-import Cookies from "js-cookie";
 import { ApiResponse } from "../interfaces";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
+import { ToastService } from "../core/toast.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class RequestService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toast: ToastService
+  ) {}
 
   checkAuth() {
-    return Cookies.get("token") ? true : false;
+    return this.getToken() ? true : false;
   }
 
   /**
@@ -26,15 +30,10 @@ export class RequestService {
       .get<ApiResponse>(`${environment.apirUrl}/${url}`, {
         params,
         headers: {
-          Authorization: Cookies.get("token") || ""
+          Authorization: this.getToken()
         }
       })
-      .pipe(
-        map((data: ApiResponse) => {
-          if (!data.success) this.handleErrors(data.code, data.errors);
-          return data;
-        })
-      );
+      .pipe(map((data: ApiResponse) => this.handleResponse(data, false)));
   }
 
   /**
@@ -42,7 +41,7 @@ export class RequestService {
    * @param url
    * @param body
    */
-  post(url: string, body: object) {
+  post(url: string, body: object, sendSuccess: boolean = true) {
     return this.http
       .post<ApiResponse>(
         `${environment.apirUrl}/${url}`,
@@ -51,16 +50,11 @@ export class RequestService {
         },
         {
           headers: {
-            Authorization: Cookies.get("token") || ""
+            Authorization: this.getToken()
           }
         }
       )
-      .pipe(
-        map((data: ApiResponse) => {
-          if (!data.success) this.handleErrors(data.code, data.errors);
-          return data;
-        })
-      );
+      .pipe(map((data: ApiResponse) => this.handleResponse(data, sendSuccess)));
   }
 
   /**
@@ -68,38 +62,28 @@ export class RequestService {
    * @param url
    * @param body
    */
-  upload(url: string, formData: FormData) {
+  upload(url: string, formData: FormData, sendSuccess: boolean = true) {
     return this.http
       .post<ApiResponse>(`${environment.apirUrl}/${url}`, formData, {
         headers: {
-          Authorization: Cookies.get("token") || ""
+          Authorization: this.getToken()
         }
       })
-      .pipe(
-        map((data: ApiResponse) => {
-          if (!data.success) this.handleErrors(data.code, data.errors);
-          return data;
-        })
-      );
+      .pipe(map((data: ApiResponse) => this.handleResponse(data, sendSuccess)));
   }
 
   /**
    * Destroy item
    * @param url
    */
-  delete(url: string) {
+  delete(url: string, sendSuccess: boolean = true) {
     return this.http
       .delete<ApiResponse>(`${environment.apirUrl}/${url}`, {
         headers: {
-          Authorization: Cookies.get("token") || ""
+          Authorization: this.getToken()
         }
       })
-      .pipe(
-        map((data: ApiResponse) => {
-          if (!data.success) this.handleErrors(data.code, data.errors);
-          return data;
-        })
-      );
+      .pipe(map((data: ApiResponse) => this.handleResponse(data, sendSuccess)));
   }
 
   /**
@@ -108,7 +92,7 @@ export class RequestService {
    * @param url
    * @param data
    */
-  put(url: string, body: any) {
+  put(url: string, body: any, sendSuccess: boolean = true) {
     return this.http
       .put<ApiResponse>(
         `${environment.apirUrl}/${url}`,
@@ -117,22 +101,29 @@ export class RequestService {
         },
         {
           headers: {
-            Authorization: Cookies.get("token") || ""
+            Authorization: this.getToken()
           }
         }
       )
-      .pipe(
-        map((data: ApiResponse) => {
-          if (!data.success) this.handleErrors(data.code, data.errors);
-          return data;
-        })
-      );
+      .pipe(map((data: ApiResponse) => this.handleResponse(data, sendSuccess)));
   }
 
-  handleErrors(errorCode: number, errors: string[]): void {
+  private handleErrors(errorCode: number, errors: string[]): void {
     if (errorCode == 403) {
-      Cookies.remove("token");
+      localStorage.removeItem("token");
       this.router.navigate(["/login"]);
     }
+  }
+
+  private handleResponse(res: ApiResponse, sendSuccess: boolean) {
+    if(!res.success) this.handleErrors(res.code, res.errors);
+
+    if(res.success && sendSuccess) this.toast.success('Changes saved successfuly')
+
+    return res;
+  }
+
+  getToken(): string {
+    return localStorage.getItem("token") || "";
   }
 }

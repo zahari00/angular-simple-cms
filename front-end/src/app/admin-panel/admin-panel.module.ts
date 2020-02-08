@@ -6,16 +6,13 @@ import { SharedModule } from './shared/shared.module';
 import { InputModule } from './input/input.module';
 import { MediaModule } from './media/media.module';
 
-
-// Components
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { ListComponent } from "./common/list/list.component";
 
-// Page CRUD
+// Pages
 import { PageListComponent } from "./page/page-list/page-list.component";
 import { CreatePageComponent } from "./page/create-page/create-page.component";
 
-// Block Crud
+// Blocks
 import { BlockListComponent } from "./block/block-list/block-list.component";
 import { CreateBlockComponent } from "./block/block-form/block-form.component";
 import { HeroComponent } from './block/types/hero/hero.component';
@@ -27,7 +24,6 @@ import { TextComponent } from './block/types/text/text.component';
     PageListComponent,
     DashboardComponent,
     BlockListComponent,
-    ListComponent,
     CreatePageComponent,
     CreateBlockComponent,
     HeroComponent,

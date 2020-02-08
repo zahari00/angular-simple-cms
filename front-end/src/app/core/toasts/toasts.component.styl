@@ -1,0 +1,35 @@
+$success-color = yellow 
+$error-color = #ea384d
+
+.toasts-container
+    position fixed
+    right 0
+    top 1rem
+    z-index 9999
+    max-width 296px
+    width 296px
+    padding-right 1rem
+
+.toast
+    width 280px
+    padding 16px 20px
+    color #010101
+    font-size 14px
+    font-weight normal
+    line-height 14px
+    background-color #fff
+    border-left 5px solid
+    cursor pointer
+    position relative
+    margin-bottom 16px
+    left 320px
+    transition left 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+
+    &.toast-error
+        border-left-color $error-color
+
+    &.toast-success
+        border-left-color $success-color
+
+    &.toast-status-show
+        left 0

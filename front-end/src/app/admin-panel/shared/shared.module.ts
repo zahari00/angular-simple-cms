@@ -7,7 +7,8 @@ import { FooterComponent } from "./footer/footer.component";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { OverlayComponent } from "./overlay/overlay.component";
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AppRoutingModule } from "src/app/app-routing.module";
+import { ListComponent } from "./list/list.component";
 
 @NgModule({
   declarations: [
@@ -16,8 +17,14 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     HeaderComponent,
     FooterComponent,
     OverlayComponent,
+    ListComponent
   ],
   imports: [CommonModule, FontAwesomeModule, AppRoutingModule],
-  exports: [PanelWrapperComponent, FontAwesomeModule, OverlayComponent]
+  exports: [
+    PanelWrapperComponent,
+    FontAwesomeModule,
+    OverlayComponent,
+    ListComponent
+  ]
 })
 export class SharedModule {}
