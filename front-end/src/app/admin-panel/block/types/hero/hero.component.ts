@@ -13,14 +13,14 @@ export class HeroComponent {
   errors: Errors = {
     image: false,
     cta: false,
-    body: false
+
   };
 
   valid: boolean = true;
 
-  validateData(image: any, cta: Link, body: string) {
+  validateData(image: any, cta: Link) {
     this.valid = true;
-    this.errors = { image: false, cta: false, body: false };
+    this.errors = { image: false, cta: false };
 
     if (!image.id) {
       this.errors.image = "Image is required";
@@ -32,18 +32,12 @@ export class HeroComponent {
       this.valid = false;
     }
 
-    if (!body) {
-      this.errors.body = "Body is required";
-      this.valid = false;
-    }
-
     if (!this.valid) return;
-    this.submit.emit({ image, cta, body });
+    this.submit.emit({ image, cta });
   }
 }
 
 interface Errors {
   image: boolean | string;
   cta: boolean | string;
-  body: boolean | string;
 }

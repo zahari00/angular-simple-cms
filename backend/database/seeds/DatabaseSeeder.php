@@ -1,6 +1,8 @@
 <?php
 
+use App\Block;
 use App\Media;
+use App\Page;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,14 +25,279 @@ class DatabaseSeeder extends Seeder
 
         $user->save();
 
-        $media_list = [
+        $blocks_list = [
             [
-                'title'         => 'Image title',
-                'path'          => 'image.jpeg',
-                'alt'           => 'Image alt',
+                'title'         => 'We provide solutions for your business!',
+                'type'          => 'hero',
+                'data'          => json_encode([
+                    'cta' => [
+                        'target'    => '_self',
+                        'title'     => 'Contact us',
+                        'url'       => '/contact'
+                    ],
+                    'image' => [
+                        "id"        => 12,
+                        "title"     => "Lorem ipsum title",
+                        "alt"       => "Lorem ipsum alt",
+                        "path"      => "2-columns_2-1-1.svg"
+                    ]
+                ]),
+            ],
+            [
+                'title'         => 'About Us',
+                'type'          => 'text',
+                'data'          => json_encode([
+                    'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "color" => "#fff"
+                ]),
+            ],
+            [
+                'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                'type'          => 'two_column',
+                'data'          => json_encode([
+                    'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    'image' => [
+                        "id"        => 1,
+                        "title"     => "Lorem ipsum title",
+                        "alt"       => "Lorem ipsum alt",
+                        "path"      => "2-columns_1-1-1.svg"
+                    ]
+                ]),
+            ],
+            [
+                'title'         => 'Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.',
+                'type'          => 'two_column',
+                'data'          => json_encode([
+                    'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    'image' => [
+                        "id"        => 2,
+                        "title"     => "Lorem ipsum title",
+                        "alt"       => "Lorem ipsum alt",
+                        "path"      => "2-columns_2-1-1.svg"
+                    ]
+                ]),
+            ],
+            [
+                'title'         => 'Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.',
+                'type'          => 'two_column',
+                'data'          => json_encode([
+                    'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    'image' => [
+                        "id"        => 3,
+                        "title"     => "Lorem ipsum title",
+                        "alt"       => "Lorem ipsum alt",
+                        "path"      => "2-columns_3-1-1.svg"
+                    ]
+                ]),
+            ],
+            [
+                'title'         => 'About Us',
+                'type'          => 'text',
+                'data'          => json_encode([
+                    'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "color" => "#ecf5ff"
+                ]),
+            ],
+            [
+                'title'         => 'Services',
+                'type'          => 'services',
+                'data'          => json_encode([
+                    "services"  => [
+                        [
+                            "title"     => "Lorem Ipsum",
+                            "body"      => "Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident",
+                        ],
+                        [
+                            "title"     => "Dolor Sitema",
+                            "body"      => "Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata",
+                        ],
+                        [
+                            "title"     => "Sed ut perspiciatis",
+                            "body"      => "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                        ],
+                        [
+                            "title"     => "Magni Dolores",
+                            "body"      => "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                        ],
+                        [
+                            "title"     => "Nemo Enim",
+                            "body"      => "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque",
+                        ],
+                        [
+                            "title"     => "Eiusmod Tempor",
+                            "body"      => "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi",
+                        ],
+                    ],
+                ]),
+            ],
+            [
+                'title'         => 'Our Clients',
+                'type'          => 'text',
+                'data'          => json_encode([
+                    'body' => "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque dere santome nida.",
+                    "color" => "#ecf5ff"
+                ]),
+            ],
+            [
+                'title'         => 'Clients',
+                'type'          => 'clients',
+                'data'          => json_encode([
+                    "clients"  => [
+                        [
+                            "image" => [
+                                "id"            => 4,
+                                'path'          => 'client-1-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 5,
+                                'path'          => 'client-2-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 6,
+                                'path'          => 'client-3-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 7,
+                                'path'          => 'client-4-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 8,
+                                'path'          => 'client-5-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 9,
+                                'path'          => 'client-6-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 10,
+                                'path'          => 'client-7-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ],
+                        [
+                            "image" => [
+                                "id"            => 11,
+                                'path'          => 'client-8-1-1.png',
+                                'title'         => 'Lorem ipsum title',
+                                'alt'           => 'Lorem ipsum alt',
+                            ],
+                        ]
+                    ],
+                ]),
+            ],
+            [
+                'title'         => 'Contact us',
+                'type'          => 'contact',
+                'data'          => json_encode([]),
             ]
         ];
 
-        Media::insert($media_list);
+
+
+        foreach ($blocks_list as $block) {
+            Block::create($block);
+        }
+
+
+        $pages_list = [
+
+        ];
+        
+        foreach ($pages_list as $page) {
+            Page::create($page);
+        }
+
+
+        $media_list = [
+            [
+                'path'          => '2-columns_1-1-1.svg',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => '2-columns_2-1-1.svg',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => '2-columns_3-1-1.svg',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-1-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-2-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-3-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-4-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-5-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-6-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-7-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'client-8-1-1.png',
+                'title'         => 'Lorem ipsum title',
+                'alt'           => 'Lorem ipsum alt',
+            ],
+            [
+                'path'          => 'hero-1-1.svg',
+                'title'         => 'Get started',
+                'alt'           => 'Get started',
+            ],
+        ];
+
+        foreach ($media_list as $media) {
+            Media::create($media);
+        }
     }
 }

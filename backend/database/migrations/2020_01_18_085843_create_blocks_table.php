@@ -17,7 +17,7 @@ class CreateBlocksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('type')->default('hero');
-            $table->string('data')->default('{}');
+            $table->longText('data');
             $table->timestamps();
         });
     }
