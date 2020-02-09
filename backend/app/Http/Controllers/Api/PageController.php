@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PageController extends ApiController
 {
@@ -17,9 +18,17 @@ class PageController extends ApiController
      */
     public function store(Request $request)
     {
-        // TODO: validation
-        $page = Page::create($request->body);
-        $page->blocks()->sync(json_decode($request->body['blocks']));
+        $slugTaken = Page::where('slug', $request->body['slug'])->first();
+
+        if (isset($slugTaken)) return [
+            'success'   => false,
+            'errors'    => ["Slug already taken"]
+        ];
+
+        $data = $request->body;
+        $data['blocks_order'] = json_encode($request->body['blocks']);
+        $page = Page::create($data);
+        $page->blocks()->sync($request->body['blocks']);
 
         return [
             'success'   => true,
@@ -45,7 +54,11 @@ class PageController extends ApiController
             ];
         }
 
-        $page->blocks()->sync(json_decode($request->body['blocks']));
+        $data = $request->body;
+        $data['blocks_order'] = json_encode($request->body['blocks']);
+        $page->update($data);
+        $page->blocks()->sync($request->body['blocks']);
+
         return [
             'success'   => true,
             'data'      => $page->load('blocks')
@@ -62,16 +75,56 @@ class PageController extends ApiController
     {
         $page = Page::where('slug', $slug)->first();
 
-        if(!isset($page) || !$page) {
+        if (!isset($page) || !$page) {
             return [
                 'success'   => false,
                 'errors'    => ['Page not found']
             ];
         }
-        
+
         return [
             'success'   => true,
             'data'      => $page
+        ];
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $page = Page::where('id', $id)->first();
+        if (!isset($page) ||  !$page) {
+            return [
+                'success'   => false,
+                'errors'    => ['Not found']
+            ];
+        }
+
+        $blocks = [];
+
+        /**
+         * Refactor later 
+         */
+        foreach (json_decode($page->blocks_order) as $block_id) {
+            foreach ($page->blocks as $block) {
+                if ($block->id == $block_id) {
+                    $blocks[] =  $block;
+                    break;
+                }
+            }
+        }
+
+        $response_data = $page->toArray();
+
+        $response_data['blocks'] = $blocks;
+
+        return [
+            'success'   => true,
+            'data'      => $response_data
         ];
     }
 }

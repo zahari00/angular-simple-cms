@@ -109,6 +109,10 @@ export class RequestService {
   }
 
   private handleErrors(errorCode: number, errors: string[]): void {
+    errors.map(error => {
+      this.toast.error(error);
+    });
+
     if (errorCode == 403) {
       localStorage.removeItem("token");
       this.router.navigate(["/login"]);
@@ -116,9 +120,10 @@ export class RequestService {
   }
 
   private handleResponse(res: ApiResponse, sendSuccess: boolean) {
-    if(!res.success) this.handleErrors(res.code, res.errors);
+    if (!res.success) this.handleErrors(res.code, res.errors);
 
-    if(res.success && sendSuccess) this.toast.success('Changes saved successfuly')
+    if (res.success && sendSuccess)
+      this.toast.success("Changes saved successfuly");
 
     return res;
   }

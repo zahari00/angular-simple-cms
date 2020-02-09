@@ -8,7 +8,7 @@ import { Block } from "src/app/interfaces";
   templateUrl: "./block-form.component.html",
   styleUrls: ["./block-form.component.styl"]
 })
-export class CreateBlockComponent implements OnInit {
+export class BlockFormComponent implements OnInit {
   type: string = "hero";
 
   errors: Errors = {
@@ -19,6 +19,14 @@ export class CreateBlockComponent implements OnInit {
 
   get loading() {
     return this.blockService.loading;
+  }
+  
+  get block() {
+    return this.blockService.selectedBlock;
+  }
+
+  get notFound() {
+    return this.blockService.blockNotFound;
   }
 
   constructor(
@@ -35,9 +43,6 @@ export class CreateBlockComponent implements OnInit {
     });
   }
 
-  get block() {
-    return this.blockService.selectedBlock;
-  }
 
   changeType(type: string) {
     this.type = type;

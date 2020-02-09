@@ -10,10 +10,10 @@ const RESOURCE_PATH: string = "api/blocks/";
 })
 export class BlockService {
   errors: string[] = [];
-  selectedBlock: Block | undefined = undefined;
+  selectedBlock: Block;
   blockNotFound: boolean = false;
   loading: boolean = false;
-  blocks: Block[] | undefined = undefined;
+  blocks: Block[] = [];
 
   constructor(private http: RequestService, private router: Router) {}
 
