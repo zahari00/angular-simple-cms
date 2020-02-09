@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\HeaderItems;
+use App\HeaderItem;
 use Illuminate\Http\Request;
 
 class HeaderItemController extends ApiController
@@ -14,34 +14,37 @@ class HeaderItemController extends ApiController
      */
     public function index(Request $request)
     {
-        $items = HeaderItems::all();
-        return $items;
-        
-        return [
+        $items = HeaderItem::orderBy('order')->get();
 
+        return [
+            'success'   => true,
+            'data'      => [
+                'items' => $items
+            ]
         ];
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Sync resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function sync(Request $request)
     {
-        //
-    }
+        HeaderItem::truncate();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $items = $request->body['items'];
+
+        foreach ($items as $key => $item) {
+            $data = $item;
+            $data['order'] = $key + 1;
+            HeaderItem::create($data);
+        }
+
+        return [
+            'success'   => true,
+            'data'      => []
+        ];
     }
 }

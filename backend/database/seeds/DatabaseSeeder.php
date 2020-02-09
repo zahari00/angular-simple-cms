@@ -1,6 +1,7 @@
 <?php
 
 use App\Block;
+use App\Footer;
 use App\Media;
 use App\Page;
 use App\User;
@@ -299,5 +300,7 @@ class DatabaseSeeder extends Seeder
         foreach ($media_list as $media) {
             Media::create($media);
         }
+
+        Footer::create([ 'text' => "© Copyright NewBiz. All Rights Reserved Designed by BootstrapMade" ]);
     }
 }

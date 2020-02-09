@@ -1,0 +1,9 @@
+<form (submit)="save($event, footer.value)">
+  <div class="form-group">
+    <label for="footer">
+      <h3>Footer</h3>
+    </label>
+    <textarea cols="30" rows="10" id="footer" #footer class="form-control" [value]="text"></textarea>
+  </div>
+  <button class="btn btn-success"> Save footer</button>
+</form>

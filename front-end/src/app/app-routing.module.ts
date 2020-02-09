@@ -11,6 +11,7 @@ import { PageFormComponent } from "./admin-panel/page/page-form/page-form.compon
 import { BlockListComponent } from "./admin-panel/block/block-list/block-list.component";
 import { BlockFormComponent } from "./admin-panel/block/block-form/block-form.component";
 import { MediaComponent } from "./admin-panel/media/page/media.component";
+import { LayoutComponent } from './admin-panel/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: "media",
         component: MediaComponent
+      },
+      {
+        path: "layout",
+        component: LayoutComponent
       }
     ]
   },

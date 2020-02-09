@@ -20,6 +20,11 @@ import { HeroComponent } from "./block/types/hero/hero.component";
 import { TwoColumnsComponent } from "./block/types/two-columns/two-columns.component";
 import { TextComponent } from "./block/types/text/text.component";
 
+// Layout
+import { LayoutComponent } from './layout/layout.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+
 @NgModule({
   declarations: [
     PageListComponent,
@@ -29,7 +34,10 @@ import { TextComponent } from "./block/types/text/text.component";
     BlockFormComponent,
     HeroComponent,
     TwoColumnsComponent,
-    TextComponent
+    TextComponent,
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   exports: [],
   imports: [

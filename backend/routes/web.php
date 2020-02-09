@@ -30,4 +30,11 @@ Route::middleware(['cors', 'auth'])->group(function () {
     Route::resource('api/media', 'Api\MediaController', [
         'except'    => ['create', 'edit']
     ]);
+
+    Route::get('api/header', 'Api\HeaderItemController@index');
+    Route::get('api/footer', 'Api\FooterController@show');
+    Route::put('api/footer', 'Api\FooterController@update');
+
+
+    Route::post('api/header', 'Api\HeaderItemController@sync');
 });

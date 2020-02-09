@@ -1,0 +1,59 @@
+.header-item, .page
+    padding 0.5rem
+    border 1px solid #ccc
+    border-radius 0.3rem
+    margin-top 1rem
+    display flex
+    background-color #fff
+
+.cdk-drag-placeholder
+    background-color yellow
+    color transparent
+    border-style dashed
+
+.page
+    transition background-color 0.15s ease
+    cursor pointer
+    &:hover
+        background-color #ccc
+
+.trash 
+    margin-left auto
+    cursor pointer
+
+.flex
+    display flex
+
+    .left   
+        margin-right 2rem
+
+.left, .right
+    min-height 350px
+    max-height 350px
+    width 320px
+    overflow auto
+    padding 0.5rem
+    border 1px solid #ccc
+    border-radius 0.3rem
+    // overflow-x hidden
+    &::-webkit-scrollbar 
+        width: 6px;
+
+    /* Track */
+    &::-webkit-scrollbar-track
+        border-radius 0.3rem
+        background: #ccc; 
+    
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb 
+        border-radius 0.3rem
+        background: #888; 
+    
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover 
+        background: #555; 
+
+h3
+    margin-bottom 1rem

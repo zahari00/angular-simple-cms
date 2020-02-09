@@ -1,0 +1,32 @@
+<h3>
+  Header navigation
+</h3>
+<div class="form-group">
+  <div class="flex">
+    <div class="left">
+      <h4>
+        Selected Pages
+      </h4>
+      <div class="header-items-con" cdkDropList (cdkDropListDropped)="reorderItems($event)">
+        <div class="header-item" *ngFor="let item of items; let i = index;" cdkDrag>
+          <div class="header-item-label">
+            {{item.title}}
+          </div>
+          <div class="trash" (click)="removeItem(i)">
+              <fa-icon [icon]="trashIcon"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <h4>
+        Not selected pages
+      </h4>
+      <div class="pages">
+        <p *ngIf="!pages.length">No pages</p>
+        <div class="page" *ngFor="let page of pages" (click)="addItem(page)">{{page.title}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-success" (click)="save()">Save navigation</button>

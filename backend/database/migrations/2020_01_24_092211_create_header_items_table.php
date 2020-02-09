@@ -15,10 +15,11 @@ class CreateHeaderItemsTable extends Migration
     {
         Schema::create('header_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('label');
-            $table->string('link');
-            $table->string('target');
+            $table->unsignedBigInteger('page_id');
+            $table->integer('order');            
             $table->timestamps();
+
+            $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
         });
     }
 
