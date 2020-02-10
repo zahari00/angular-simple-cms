@@ -73,4 +73,9 @@ export class BlockService {
       this.blocks = this.blocks.filter(block => block.id !== id);
     });
   }
+
+  resetData() {
+    this.blockNotFound = false;
+    this.selectedBlock = undefined;
+  }
 }

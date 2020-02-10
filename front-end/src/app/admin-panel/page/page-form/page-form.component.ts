@@ -44,6 +44,7 @@ export class PageFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.pageService.resetData();
     this.pageService.getAllBlocks();
     this.route.paramMap.subscribe(params => {
       const pageId: number = +params.get("pageId");

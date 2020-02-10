@@ -35,6 +35,7 @@ export class BlockFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.blockService.resetData()
     this.route.paramMap.subscribe(params => {
       const blockId: number = +params.get("blockId");
       if (!blockId) return;

@@ -43,6 +43,13 @@ export class PageService {
     });
   }
 
+  resetData() {
+    this.pageNotFound = false;
+    this.selectedBlockIds = {};
+    this.selectedBlocks = [];
+    this.selectedPage = undefined;
+  }
+
   getAllBlocks() {
     this.blockService.getBlocks(1, 999999);
   }
