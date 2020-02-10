@@ -9,7 +9,7 @@ import { BlockService } from '../block.service';
 export class BlockListComponent implements OnInit {
 
   // how many pages to get from the back-end server
-  pagesPerPage: number = 10
+  pagesPerPage: number = 9999
 
   // current page (pagination)
   currentPage: number = 1

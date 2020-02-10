@@ -21,7 +21,7 @@
       <ng-container [ngSwitch]="type">
         <block-hero *ngSwitchCase="'hero'" (submit)="submitHandler(title.value, $event)" [data]="block?.data">
         </block-hero>
-        <block-text *ngSwitchCase="'text'" (submit)="submitHandler(title.value, $event)"></block-text>
+        <block-text *ngSwitchCase="'text'" (submit)="submitHandler(title.value, $event)" [data]="block?.data"></block-text>
         <block-two-columns *ngSwitchCase="'two-col'" (submit)="submitHandler(title.value, $event)"></block-two-columns>
         <!-- <block-hero *ngSwitchCase="'hero'"></block-hero> -->
       </ng-container>

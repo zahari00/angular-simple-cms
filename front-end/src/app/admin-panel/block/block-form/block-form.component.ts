@@ -9,18 +9,20 @@ import { Block } from "src/app/interfaces";
   styleUrls: ["./block-form.component.styl"]
 })
 export class BlockFormComponent implements OnInit {
-  type: string = "hero";
-
   errors: Errors = {
     title: false
   };
 
   blockId: number;
+ 
+  get type(): string {
+    return this.blockService.type;
+  }
 
   get loading() {
     return this.blockService.loading;
   }
-  
+
   get block() {
     return this.blockService.selectedBlock;
   }
@@ -35,7 +37,7 @@ export class BlockFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.blockService.resetData()
+    this.blockService.resetData();
     this.route.paramMap.subscribe(params => {
       const blockId: number = +params.get("blockId");
       if (!blockId) return;
@@ -44,9 +46,8 @@ export class BlockFormComponent implements OnInit {
     });
   }
 
-
   changeType(type: string) {
-    this.type = type;
+    this.blockService.changeBlockType(type);
   }
 
   submitHandler(title: string, data: any) {

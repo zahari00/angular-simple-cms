@@ -9,6 +9,9 @@ const RESOURCE_PATH: string = "api/blocks/";
   providedIn: "root"
 })
 export class BlockService {
+  blockType: string[] = ["hero", "text", "two-col", "clients", "services"];
+  type: string = this.blockType[0];
+
   errors: string[] = [];
   selectedBlock: Block;
   blockNotFound: boolean = false;
@@ -35,6 +38,7 @@ export class BlockService {
         return;
       }
 
+      this.type = res.data.type;
       this.loading = false;
       this.selectedBlock = res.data;
     });
@@ -72,6 +76,10 @@ export class BlockService {
 
       this.blocks = this.blocks.filter(block => block.id !== id);
     });
+  }
+
+  changeBlockType(type: string) {
+    this.type = type;
   }
 
   resetData() {

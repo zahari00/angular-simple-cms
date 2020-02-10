@@ -13,7 +13,6 @@ export class HeroComponent {
   errors: Errors = {
     image: false,
     cta: false,
-
   };
 
   valid: boolean = true;
