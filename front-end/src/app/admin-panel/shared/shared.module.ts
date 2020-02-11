@@ -7,8 +7,8 @@ import { FooterComponent } from "./footer/footer.component";
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { OverlayComponent } from "./overlay/overlay.component";
-import { AppRoutingModule } from "src/app/app-routing.module";
 import { ListComponent } from "./list/list.component";
+import { AdminPanelRoutingModule } from '../admin-panel-routing';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { ListComponent } from "./list/list.component";
     OverlayComponent,
     ListComponent
   ],
-  imports: [CommonModule, FontAwesomeModule, AppRoutingModule],
+  imports: [CommonModule, FontAwesomeModule, AdminPanelRoutingModule],
   exports: [
     PanelWrapperComponent,
     FontAwesomeModule,

@@ -1,6 +1,6 @@
 // Modules
 import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "../app-routing.module";
+import { AdminPanelRoutingModule } from './admin-panel-routing';
 import { CommonModule } from "@angular/common";
 import { SharedModule } from "./shared/shared.module";
 import { InputModule } from "./input/input.module";
@@ -42,7 +42,7 @@ import { FooterComponent } from './layout/footer/footer.component';
   exports: [],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    AdminPanelRoutingModule,
     SharedModule,
     InputModule,
     MediaModule,

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { AppRoutingModule } from "src/app/app-routing.module";
+import { AdminPanelRoutingModule } from '../admin-panel-routing';
 import { MediaListComponent } from "./list/media-list.component";
 import { MediaItemComponent } from "./item/media-item.component";
 import { MediaComponent } from "./page/media.component";
@@ -18,6 +18,6 @@ import { SharedModule } from '../shared/shared.module';
     PickerComponent,
   ],
   exports: [PickerComponent],
-  imports: [CommonModule, AppRoutingModule, SharedModule]
+  imports: [CommonModule, AdminPanelRoutingModule, SharedModule]
 })
 export class MediaModule {}
