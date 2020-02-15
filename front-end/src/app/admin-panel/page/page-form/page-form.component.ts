@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { PageService } from "../page.service";
 import { Block } from "src/app/interfaces";
-import { faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "admin-panel-create-page",
@@ -12,18 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PageFormComponent implements OnInit {
   dragHandlerIcon = faHamburger;
+  removeBlockIcon = faTrashAlt;
   pageId: number = 0;
 
   get defaultSlug() {
-    if(!this.pageService.selectedPage) return ''
+    if (!this.pageService.selectedPage) return "";
 
-    return this.pageService.selectedPage.slug
+    return this.pageService.selectedPage.slug;
   }
 
   get defaultTitle() {
-    if(!this.pageService.selectedPage) return ''
+    if (!this.pageService.selectedPage) return "";
 
-    return this.pageService.selectedPage.title
+    return this.pageService.selectedPage.title;
   }
 
   get selectedBlocks() {

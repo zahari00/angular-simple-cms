@@ -15,8 +15,11 @@ class ApiController extends Controller
     public function index(Request $request)
     {
         // add ?page=n to get the page you want
-        $per_page = (int)$request->per_page;
+        // $per_page = (int)$request->per_page;
+        $per_page = 99999;
         $results = $this->model::paginate($per_page);
+
+        
         return [
             'success'   => true,
             'data'      => [

@@ -1,0 +1,16 @@
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Logo">
+    </div>
+    <ul>
+      <li *ngFor="let item of headerItems">
+        <a [routerLink]="item.url" routerLinkActive="active" [title]="item.title">{{item.title}}</a>
+      </li>
+    </ul>
+  </div>
+</header>
+<app-blocks></app-blocks>
+<footer>
+  <p>{{footer?.text}}</p>
+</footer>

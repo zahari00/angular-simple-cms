@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
                         "id"        => 12,
                         "title"     => "Lorem ipsum title",
                         "alt"       => "Lorem ipsum alt",
-                        "path"      => "2-columns_2-1-1.svg"
+                        "path"      => "hero-1-1.svg"
                     ]
                 ]),
             ],
@@ -226,7 +226,9 @@ class DatabaseSeeder extends Seeder
 
 
         $pages_list = [
-
+            // 'slug'  => '/',
+            // 'title' => 'Homepage',
+            // 'block_i'
         ];
         
         foreach ($pages_list as $page) {

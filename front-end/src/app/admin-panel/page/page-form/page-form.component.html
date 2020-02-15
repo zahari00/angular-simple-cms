@@ -3,7 +3,7 @@
     <div class="btn-con">
       <a class="btn btn-action" routerLink="/backend/pages">View all</a>
     </div>
-    <form  *ngIf="!notFound" class="form" (submit)="submitHandler($event, slug.value, title.value)">
+    <form *ngIf="!notFound" class="form" (submit)="submitHandler($event, slug.value, title.value)">
       <div class="form-group">
         <label for="slug">Slug</label>
         <input type="text" id="slug" #slug [value]="defaultSlug" class="form-control">
@@ -26,11 +26,10 @@
           <div class="blocks-con" cdkDropList (cdkDropListDropped)="blocksDrop($event)">
             <div class="drag" *ngFor="let block of selectedBlocks" cdkDrag>
               <div class="draggable-con">
-                <div cdkDragHandle class="handler">
-                  <fa-icon [icon]="dragHandlerIcon"></fa-icon>
-                </div>
                 {{getBlockTitle(block.title)}}
-                <div class="remove" (click)="removeSelectedBlock(block)"></div>
+                <div class="remove" (click)="removeSelectedBlock(block)">
+                  <fa-icon [icon]="removeBlockIcon"></fa-icon>
+                </div>
               </div>
             </div>
           </div>

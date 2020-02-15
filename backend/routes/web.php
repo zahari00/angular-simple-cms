@@ -12,7 +12,7 @@
 */
 Route::post('api/login', 'Api\LoginController@login');
 
-Route::get('api/pages/find/{slug}', 'Api\PageController@find');
+Route::get('api/pages/find', 'Api\PageController@find');
 
 Route::middleware(['cors', 'auth'])->group(function () {
     Route::get('/test', function () {

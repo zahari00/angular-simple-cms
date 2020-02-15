@@ -1,19 +1,32 @@
 import { Component, OnInit } from "@angular/core";
-import { faImages, faCookieBite } from "@fortawesome/free-solid-svg-icons";
+import {
+  faImages,
+  faCookieBite,
+  faBook,
+  faThLarge,
+  faHome,
+  faSignOutAlt
+} from "@fortawesome/free-solid-svg-icons";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "admin-panel-navigation",
   templateUrl: "./navigation.component.html",
   styleUrls: ["./navigation.component.styl"]
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
   mainIcon = faCookieBite;
   mediaIcon = faImages;
-  pagesIcon = faImages;
-  blocksIcon = faImages;
-  layoutIcon = faImages;
-  
-  constructor() {}
+  pagesIcon = faBook;
+  blocksIcon = faThLarge;
+  layoutIcon = faHome;
+  logoutIcon = faSignOutAlt;
 
-  ngOnInit() {}
+  constructor(private router: Router) {}
+
+  logout() {
+    localStorage.removeItem("token");
+
+    this.router.navigate(["login"]);
+  }
 }

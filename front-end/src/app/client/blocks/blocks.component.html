@@ -1,0 +1,7 @@
+<ng-template ngFor let-block [ngForOf]="blocks">
+  <ng-container [ngSwitch]="block.type">
+    <app-hero *ngSwitchCase="'hero'" [block]="block"></app-hero>
+    <app-text *ngSwitchCase="'text'" [block]="block"></app-text>
+    <app-two-columns *ngSwitchCase="'two_column'" [block]="block"></app-two-columns>
+  </ng-container>
+</ng-template>

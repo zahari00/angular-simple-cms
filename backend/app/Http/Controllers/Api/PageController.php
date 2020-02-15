@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Footer;
+use App\HeaderItem;
 use App\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -59,6 +61,7 @@ class PageController extends ApiController
         $page->update($data);
         $page->blocks()->sync($request->body['blocks']);
 
+        
         return [
             'success'   => true,
             'data'      => $page->load('blocks')
@@ -68,12 +71,15 @@ class PageController extends ApiController
     /**
      * Find page by slug.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function find($slug)
+    public function find(Request $request)
     {
-        $page = Page::where('slug', $slug)->first();
+        $page = Page::where('slug', $request->slug)->first();
+        $header_items = HeaderItem::orderBy('order')->get();
+        $footer = Footer::where('id', 1)->first();;
+    
 
         if (!isset($page) || !$page) {
             return [
@@ -82,9 +88,33 @@ class PageController extends ApiController
             ];
         }
 
+        $blocks = [];
+
+        /**
+         * Refactor later 
+         */
+        foreach (json_decode($page->blocks_order) as $block_id) {
+            foreach ($page->blocks as $block) {
+                if ($block->id == $block_id) {
+                    $block['data'] = json_decode($block['data']);
+                    $blocks[] =  $block;
+                    break;
+                }
+            }
+        }
+        
+        $page = $page->toArray();
+
+        $page['blocks'] = $blocks;
+
+        
         return [
             'success'   => true,
-            'data'      => $page
+            'data'      => [
+                'page'          => $page,
+                'header_items'  => $header_items,
+                'footer'        => $footer,
+            ]
         ];
     }
 

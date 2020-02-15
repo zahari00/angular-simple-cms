@@ -7,12 +7,17 @@ import { GuestGuard } from "./auth/guest.guard";
 const routes: Routes = [
   {
     path: "backend",
+    canLoad: [AuthGuard],
     loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)
   },
   {
     path: "login",
     component: LoginComponent,
     canActivate: [GuestGuard]
+  },
+  {
+    path: '',
+    loadChildren: () => import('./client/client.module').then(m => m.ClientModule)
   }
 ];
 
