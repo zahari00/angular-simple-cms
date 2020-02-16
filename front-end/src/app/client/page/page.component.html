@@ -5,12 +5,32 @@
     </div>
     <ul>
       <li *ngFor="let item of headerItems">
-        <a [routerLink]="item.url" routerLinkActive="active" [title]="item.title">{{item.title}}</a>
+        <a [routerLink]="item.url" [ngClass]="isLinkActive(item.url)" [title]="item.title">{{item.title}}</a>
       </li>
     </ul>
   </div>
 </header>
-<app-blocks></app-blocks>
+<app-blocks *ngIf="!loading && !notFound"></app-blocks>
+<div *ngIf="loading">
+  <br>
+  <br>
+  <br>
+  <h1>Loading</h1>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<div *ngIf="notFound">
+  <br>
+  <br>
+  <br>
+  <h1>Page not found</h1>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
 <footer>
   <p>{{footer?.text}}</p>
 </footer>

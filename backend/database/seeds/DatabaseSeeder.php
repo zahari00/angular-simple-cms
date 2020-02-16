@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-                'type'          => 'two_column',
+                'type'          => 'two_columns',
                 'data'          => json_encode([
                     'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                     'image' => [
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title'         => 'Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.',
-                'type'          => 'two_column',
+                'type'          => 'two_columns',
                 'data'          => json_encode([
                     'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                     'image' => [
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'title'         => 'Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.',
-                'type'          => 'two_column',
+                'type'          => 'two_columns',
                 'data'          => json_encode([
                     'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                     'image' => [
@@ -140,10 +140,10 @@ class DatabaseSeeder extends Seeder
                 ]),
             ],
             [
-                'title'         => 'Clients',
-                'type'          => 'clients',
+                'title'         => 'Partners',
+                'type'          => 'partners',
                 'data'          => json_encode([
-                    "clients"  => [
+                    "partners"  => [
                         [
                             "image" => [
                                 "id"            => 4,

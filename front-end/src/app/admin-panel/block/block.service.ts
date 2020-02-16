@@ -9,8 +9,8 @@ const RESOURCE_PATH: string = "api/blocks/";
   providedIn: "root"
 })
 export class BlockService {
-  blockType: string[] = ["hero", "text", "two-col", "clients", "services"];
-  type: string = this.blockType[0];
+  // blockType: string[] = ["hero", "text", "two-col", "partners", "services"];
+  type: string = 'partners';
 
   errors: string[] = [];
   selectedBlock: Block;
@@ -64,7 +64,7 @@ export class BlockService {
       })
       .subscribe(res => {
         if (res.success) {
-          this.router.navigate(["backend", "blocks"]);
+          this.router.navigate(["backend", "blocks", "list"]);
           return;
         }
       });

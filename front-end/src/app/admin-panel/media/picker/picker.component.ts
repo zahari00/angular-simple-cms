@@ -9,7 +9,7 @@ import { MediaService } from "../media.service";
 })
 export class PickerComponent implements OnInit {
   @Input() defaultValue: false|Media = false;
-
+  @Output() change: EventEmitter<any> =  new EventEmitter();
   value: Media = {
     id: 0,
     status: "",
@@ -44,5 +44,7 @@ export class PickerComponent implements OnInit {
   onChange(value: Media) {
     this.toggleOverlay(false);
     this.value = { ...value };
+    console.log(this.value, 'here')
+    this.change.emit({ value })
   }
 }

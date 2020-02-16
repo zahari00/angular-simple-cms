@@ -1,0 +1,25 @@
+<!-- Media -->
+<div class="form-group" *ngFor="let partner of partners; let i = index;" [class.invalid]="errors.partners[i]">
+  <label>Partner Logo</label>
+  <div class="flex">
+    <div class="right">
+      <media-picker #media [defaultValue]="partner" (change)="handleChange(i, media.value)"></media-picker>
+    </div>
+    <div class="left" *ngIf="i > 0">
+      <button class="btn btn-danger" (click)="removePartner($event, i)">
+        <fa-icon [icon]="trashIcon"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <p class="error-response" *ngIf="errors.partners[i]">{{errors.partners[i]}}</p>
+</div>
+<!-- END Media -->
+
+<div class="form-group add-partner-btn-con">
+  <button class="btn btn-action" (click)="addPartner()">Add Partner</button>
+</div>
+
+<div>
+  <button class="btn btn-success" (click)="validateData()">Save</button>
+  <p class="error-response" *ngIf="!valid">Please fill all fields correctly</p>
+</div>

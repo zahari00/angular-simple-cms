@@ -61,7 +61,7 @@ class PageController extends ApiController
         $page->update($data);
         $page->blocks()->sync($request->body['blocks']);
 
-        
+
         return [
             'success'   => true,
             'data'      => $page->load('blocks')
@@ -79,12 +79,16 @@ class PageController extends ApiController
         $page = Page::where('slug', $request->slug)->first();
         $header_items = HeaderItem::orderBy('order')->get();
         $footer = Footer::where('id', 1)->first();;
-    
+
 
         if (!isset($page) || !$page) {
             return [
                 'success'   => false,
-                'errors'    => ['Page not found']
+                'errors'    => [],
+                'data'      => [
+                    'header_items'  => $header_items,
+                    'footer'        => $footer,
+                ]
             ];
         }
 
@@ -102,12 +106,12 @@ class PageController extends ApiController
                 }
             }
         }
-        
+
         $page = $page->toArray();
 
         $page['blocks'] = $blocks;
 
-        
+
         return [
             'success'   => true,
             'data'      => [

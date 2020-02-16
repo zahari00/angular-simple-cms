@@ -14,14 +14,6 @@
 </div>
 <!-- END CTA -->
 
-<!-- Body -->
-<!-- <div class="form-group" [class.invalid]="errors.body">
-  <label for="body">Body</label>
-  <textarea #body id="body" [value]="data?.body" class="form-control" rows="6" #body></textarea>
-  <p class="error-response" *ngIf="errors.body">{{errors.body}}</p>
-</div> -->
-<!-- END Body -->
-
 <div class="form-group">
   <button class="btn btn-success" (click)="validateData(image.value, cta.value)">Save</button>
   <p class="error-response" *ngIf="!valid">Please fill all fields correctly</p>

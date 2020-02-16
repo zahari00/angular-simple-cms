@@ -1,16 +1,16 @@
 <admin-panel-wrapper>
   <section class="main">
     <div class="btn-con">
-      <a class="btn btn-action" routerLink="/backend/blocks">View all</a>
+      <a class="btn btn-action" routerLink="/backend/blocks/list">View all</a>
     </div>
     <div class="form" *ngIf="!loading && !notFound">
       <div class="form-group" *ngIf="!block">
         <label for="type">Select block type</label>
-        <select #inputType id="type" class="form-control" (change)="changeType(inputType.value)">
+        <select #inputType id="type" class="form-control" [value]="type" (change)="changeType(inputType.value)">
           <option value="hero">Hero block</option>
-          <option value="two-col">Two column block</option>
+          <option value="two_columns">Two columns block</option>
           <option value="text">Text block</option>
-          <!-- <option value="partners">Partners block</option> -->
+          <option value="partners">Partners block</option>
         </select>
       </div>
       <div class="form-group">
@@ -21,9 +21,13 @@
       <ng-container [ngSwitch]="type">
         <block-hero *ngSwitchCase="'hero'" (submit)="submitHandler(title.value, $event)" [data]="block?.data">
         </block-hero>
-        <block-text *ngSwitchCase="'text'" (submit)="submitHandler(title.value, $event)" [data]="block?.data"></block-text>
-        <block-two-columns *ngSwitchCase="'two-col'" (submit)="submitHandler(title.value, $event)"></block-two-columns>
-        <!-- <block-hero *ngSwitchCase="'hero'"></block-hero> -->
+        <block-text *ngSwitchCase="'text'" (submit)="submitHandler(title.value, $event)" [data]="block?.data">
+        </block-text>
+        <block-two-columns *ngSwitchCase="'two_columns'" (submit)="submitHandler(title.value, $event)"
+          [data]="block?.data">
+        </block-two-columns>
+        <input-partner *ngSwitchCase="'partners'" (submit)="submitHandler(title.value, $event)" [data]="block?.data">
+        </input-partner>
       </ng-container>
     </div>
     <div class="not-found-text" *ngIf="notFound">

@@ -6,6 +6,7 @@ import { SharedModule } from "./shared/shared.module";
 import { InputModule } from "./input/input.module";
 import { MediaModule } from "./media/media.module";
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { BlockModule } from './block/block.module'
 
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
@@ -13,12 +14,6 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PageListComponent } from "./page/page-list/page-list.component";
 import { PageFormComponent } from "./page/page-form/page-form.component";
 
-// Blocks
-import { BlockListComponent } from "./block/block-list/block-list.component";
-import { BlockFormComponent } from "./block/block-form/block-form.component";
-import { HeroComponent } from "./block/types/hero/hero.component";
-import { TwoColumnsComponent } from "./block/types/two-columns/two-columns.component";
-import { TextComponent } from "./block/types/text/text.component";
 
 // Layout
 import { LayoutComponent } from './layout/layout.component';
@@ -29,12 +24,7 @@ import { FooterComponent } from './layout/footer/footer.component';
   declarations: [
     PageListComponent,
     DashboardComponent,
-    BlockListComponent,
     PageFormComponent,
-    BlockFormComponent,
-    HeroComponent,
-    TwoColumnsComponent,
-    TextComponent,
     LayoutComponent,
     HeaderComponent,
     FooterComponent
@@ -46,7 +36,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     SharedModule,
     InputModule,
     MediaModule,
-    DragDropModule
+    DragDropModule,
+    BlockModule
   ]
 })
 export class AdminPanelModule {}

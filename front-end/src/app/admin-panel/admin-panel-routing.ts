@@ -5,8 +5,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PageListComponent } from "./page/page-list/page-list.component";
 import { PageFormComponent } from "./page/page-form/page-form.component";
-import { BlockListComponent } from "./block/block-list/block-list.component";
-import { BlockFormComponent } from "./block/block-form/block-form.component";
 import { MediaComponent } from "./media/page/media.component";
 import { LayoutComponent } from "./layout/layout.component";
 
@@ -34,15 +32,7 @@ const routes: Routes = [
   },
   {
     path: "blocks",
-    component: BlockListComponent
-  },
-  {
-    path: "blocks/create",
-    component: BlockFormComponent
-  },
-  {
-    path: "blocks/:blockId",
-    component: BlockFormComponent
+    loadChildren: () => import('./block/block.module').then(m => m.BlockModule)    
   },
   {
     path: "media",
