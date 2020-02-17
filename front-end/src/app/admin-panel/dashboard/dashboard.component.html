@@ -1,7 +1,40 @@
 <admin-panel-wrapper>
-    <div>
-        <h1>
-            test dashboard
-        </h1>
+  <div class="con">
+    <h1>
+      Welcome back
+    </h1>
+
+    <div class="grid">
+      <div class="pages col">
+        <h3>
+          Pages
+        </h3>
+        <div class="total">
+          Total
+          <span class="badge">
+            {{pagesCount}}
+          </span>
+        </div>
+        <div class="btns-con">
+          <a routerLink="/backend/pages/list" class="btn btn-action">View all</a>
+          <a routerLink="/backend/pages/create" class="btn btn-primary">Create new</a>
+        </div>
+      </div>
+      <div class="blocks col">
+        <h3>
+          Blocks
+        </h3>
+        <div class="total">
+          Total
+          <span class="badge">
+            {{blocksCount}}
+          </span>
+        </div>
+        <div class="btns-con">
+          <a routerLink="/backend/blocks/list" class="btn btn-action">View all</a>
+          <a routerLink="/backend/blocks/create" class="btn btn-primary">Create new</a>
+        </div>
+      </div>
     </div>
+  </div>
 </admin-panel-wrapper>

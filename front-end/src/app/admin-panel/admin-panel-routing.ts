@@ -20,11 +20,11 @@ const routes: Routes = [
   },
   {
     path: "pages",
-    loadChildren: () => import('./page/page.module').then(m => m.PageModule)    
+    loadChildren: () => import("./page/page.module").then(m => m.PageModule)
   },
   {
     path: "blocks",
-    loadChildren: () => import('./block/block.module').then(m => m.BlockModule)    
+    loadChildren: () => import("./block/block.module").then(m => m.BlockModule)
   },
   {
     path: "media",
@@ -33,7 +33,8 @@ const routes: Routes = [
   {
     path: "layout",
     component: LayoutComponent
-  }
+  },
+  { path: "**", redirectTo: '/backend/dashboard' }
 ];
 
 @NgModule({
