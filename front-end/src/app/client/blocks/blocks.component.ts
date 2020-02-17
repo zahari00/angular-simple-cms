@@ -28,7 +28,7 @@ export class BlocksComponent {
    * Edit block
    */
   editBlock(block: Block) {
-    this.router.navigate(["backend", "blocks", block.id]);
+    window.open(`/backend/blocks/${block.id}`, '_blank');
   }
 
   stopPropagation(e: MouseEvent) {
