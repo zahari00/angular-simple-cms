@@ -1,13 +1,16 @@
-import { Component, OnInit, OnChanges } from "@angular/core";
+import { Component, OnInit, OnChanges, OnDestroy } from "@angular/core";
 import { ClientService } from "../client.service";
 import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-page",
   templateUrl: "./page.component.html",
   styleUrls: ["./page.component.styl"]
 })
-export class PageComponent implements OnInit {
+export class PageComponent implements OnInit, OnDestroy {
+  routeChangeSubscription: Subscription
+
   get headerItems() {
     return this.clientService.headerItems;
   }
@@ -28,9 +31,13 @@ export class PageComponent implements OnInit {
 
   ngOnInit() {
     this.clientService.getPage();
-    this.router.events.subscribe(val => {
+    this.routeChangeSubscription = this.router.events.subscribe(() => {
       this.clientService.getPage();
     });
+  }
+
+  ngOnDestroy() {
+    this.routeChangeSubscription.unsubscribe()
   }
 
   isLinkActive(itemUrl: string) {

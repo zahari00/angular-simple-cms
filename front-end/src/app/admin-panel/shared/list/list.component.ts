@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { RequestService } from "src/app/http/request.service";
 import { Router } from "@angular/router";
@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.styl"]
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   @Input() items: any;
   @Input() model: string;
   @Output() delete: EventEmitter<any> = new EventEmitter();
@@ -17,14 +17,24 @@ export class ListComponent implements OnInit {
 
   constructor(private http: RequestService, private router: Router) {}
 
-  ngOnInit() {}
-
+  /**
+   * On edit click
+   * 
+   * @param e 
+   * @param id 
+   */
   onEdit(e: MouseEvent, id: string) {
     e.preventDefault();
 
     this.router.navigate(["backend", this.model, id]);
   }
 
+  /**
+   * On destroy 
+   * 
+   * @param e 
+   * @param id 
+   */
   onDelete(e: MouseEvent, id: string) {
     e.preventDefault();
 

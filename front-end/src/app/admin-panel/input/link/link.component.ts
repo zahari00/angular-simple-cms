@@ -7,18 +7,13 @@ import { Link } from "src/app/interfaces";
   styleUrls: ["./link.component.styl"]
 })
 export class LinkComponent implements OnInit {
-  @Input() defaultValue: false|Link = false;
+  @Input() defaultValue: false | Link = false;
 
   value: Link = {
     target: "_self",
     url: "",
     title: ""
   };
-
-  ngOnInit() {
-    if(!this.defaultValue) return;
-    this.value = this.defaultValue;
-  }
 
   valid = true;
 
@@ -30,6 +25,18 @@ export class LinkComponent implements OnInit {
   showPicker: boolean = false;
   showOpenUrlModel: boolean = false;
 
+  ngOnInit() {
+    if (!this.defaultValue) return;
+    this.value = this.defaultValue;
+  }
+
+  /**
+   * Save changes and hide link form
+   * 
+   * @param url 
+   * @param title 
+   * @param target 
+   */
   saveChanges(url: string, title: string, target: any) {
     this.errors = {
       title: false,
@@ -58,12 +65,22 @@ export class LinkComponent implements OnInit {
     this.showPicker = false;
   }
 
+  /**
+   * Toggle link form
+   * 
+   * @param e 
+   */
   togglePicker(e: any = false) {
     if (e) e.preventDefault();
 
     this.showPicker = !this.showPicker;
   }
 
+  /**
+   * Toggle open url modal
+   * 
+   * @param e 
+   */
   toggleUrlModal(e: any = false) {
     if (e) {
       e.stopPropagation();
@@ -71,9 +88,5 @@ export class LinkComponent implements OnInit {
     }
 
     this.showOpenUrlModel = !this.showOpenUrlModel;
-  }
-
-  log(data: any) {
-    console.log(data);
   }
 }

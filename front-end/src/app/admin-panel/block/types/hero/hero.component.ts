@@ -17,6 +17,12 @@ export class HeroComponent {
 
   valid: boolean = true;
 
+  /**
+   * Validate data and emit submit event if valid
+   * 
+   * @param image 
+   * @param cta 
+   */
   validateData(image: any, cta: Link) {
     this.valid = true;
     this.errors = { image: false, cta: false };

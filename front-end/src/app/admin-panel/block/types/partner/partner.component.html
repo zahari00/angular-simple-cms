@@ -1,17 +1,19 @@
 <!-- Media -->
-<div class="form-group" *ngFor="let partner of partners; let i = index;" [class.invalid]="errors.partners[i]">
-  <label>Partner Logo</label>
-  <div class="flex">
-    <div class="right">
-      <media-picker #media [defaultValue]="partner" (change)="handleChange(i, media.value)"></media-picker>
+<div cdkDropList (cdkDropListDropped)="partnerDrop($event)">
+  <div class="form-group" cdkDrag *ngFor="let partner of partners; let i = index;" [class.invalid]="errors.partners[i]">
+    <label>Partner Logo</label>
+    <div class="flex">
+      <div class="right">
+        <media-picker #media [defaultValue]="partner" (change)="handleChange(i, media.value)"></media-picker>
+      </div>
+      <div class="left" *ngIf="i > 0">
+        <button class="btn btn-danger" (click)="removePartner($event, i)">
+          <fa-icon [icon]="trashIcon"></fa-icon>
+        </button>
+      </div>
     </div>
-    <div class="left" *ngIf="i > 0">
-      <button class="btn btn-danger" (click)="removePartner($event, i)">
-        <fa-icon [icon]="trashIcon"></fa-icon>
-      </button>
-    </div>
+    <p class="error-response" *ngIf="errors.partners[i]">{{errors.partners[i]}}</p>
   </div>
-  <p class="error-response" *ngIf="errors.partners[i]">{{errors.partners[i]}}</p>
 </div>
 <!-- END Media -->
 

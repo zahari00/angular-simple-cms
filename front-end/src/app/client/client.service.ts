@@ -18,14 +18,25 @@ export class ClientService {
 
   constructor(private http: RequestService) {}
 
+  /**
+   * Get page
+   */
   getPage() {
+    // get current slug
     const currentSlug = window.location.pathname;
+
+    // if the current slug is equal to the current page slug
     if (currentSlug === this.pageSlug) return;
-    this.pageNotFound =  false;
+
+    // reset data
+    this.pageNotFound = false;
     this.loading = true;
     this.pageSlug = currentSlug;
+
+    // get cached page
     const cachedPage = this.cache[currentSlug];
 
+    // if page is cached, load data from cache and exit
     if (cachedPage) {
       this.pageId = cachedPage.page.id;
       this.pageBlocks = cachedPage.page.blocks;

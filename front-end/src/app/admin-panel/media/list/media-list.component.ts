@@ -22,6 +22,11 @@ export class MediaListComponent implements OnInit {
     this.mediaService.getAllMedia(1);
   }
 
+  /**
+   * Upload photo
+   * 
+   * @param e 
+   */
   uploadPhotos(e: Event) {
     const files = (<HTMLInputElement>e.target).files;
 

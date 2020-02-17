@@ -23,10 +23,17 @@ export class PageListComponent implements OnInit {
     this.loadPages();
   }
 
+  /**
+   * Get pages
+   */
   loadPages() {
     this.pageService.getPages(this.currentPage, this.pagesPerPage);
   }
 
+  /**
+   * Destroy page
+   *  
+   */
   deletePage({ id }) {
     this.pageService.deletePage(id);
   }

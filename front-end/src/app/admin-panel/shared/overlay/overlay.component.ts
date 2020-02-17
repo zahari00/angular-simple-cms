@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -6,13 +6,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './overlay.component.html',
   styleUrls: ['./overlay.component.styl']
 })
-export class OverlayComponent implements OnInit {
+export class OverlayComponent {
   @Output() hideOverlay: EventEmitter<any> = new EventEmitter()
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   onBackClick() {
     this.hideOverlay.emit();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Media } from 'src/app/interfaces';
 
 @Component({
@@ -19,6 +19,12 @@ export class TwoColumnsComponent {
 
   valid: boolean = true;
 
+  /**
+   * Validate data and emit submit event
+   * 
+   * @param body 
+   * @param image 
+   */
   validateData(body: string, image: Media) {
     this.valid = true;
     this.errors = { body: false, image: false };

@@ -17,10 +17,18 @@ export class MediaItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Media click handler
+   */
   onClick() {
     this.mediaClick.emit(this.data);  
   }
 
+  /**
+   * Get media path
+   * 
+   * @param path 
+   */
   getMediaPath(path: string): string {
     const url = this.mediaService.getMediaImageUrl(path, '130x130')
     return `url(${url})`;

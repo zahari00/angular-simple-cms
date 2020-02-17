@@ -18,6 +18,12 @@ export class FooterComponent implements OnInit {
     this.layoutService.getFooter();
   }
 
+  /**
+   * Save footer changes
+   * 
+   * @param e 
+   * @param text 
+   */
   save(e: Event, text: string) {
     e.preventDefault();
     

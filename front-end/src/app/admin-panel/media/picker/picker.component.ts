@@ -41,10 +41,14 @@ export class PickerComponent implements OnInit {
     this.showOverlay = showOverlay;
   }
 
+  /**
+   * Handle changes
+   * 
+   * @param value 
+   */
   onChange(value: Media) {
     this.toggleOverlay(false);
     this.value = { ...value };
-    console.log(this.value, 'here')
     this.change.emit({ value })
   }
 }

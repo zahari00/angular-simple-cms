@@ -16,6 +16,12 @@ export class AuthService {
     return localStorage.getItem("token") ? true : false;
   }
 
+  /**
+   * Login request
+   * 
+   * @param email 
+   * @param password 
+   */
   login(email: string, password: string) {
     this.http
       .post("api/login", { email, password }, false)

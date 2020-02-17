@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { Link } from "src/app/interfaces";
 
 @Component({
   selector: "block-text",
@@ -19,6 +18,12 @@ export class TextComponent {
 
   valid: boolean = true;
 
+  /**
+   * Validate data and emit submit event
+   * 
+   * @param body 
+   * @param color 
+   */
   validateData(body: string, color: string) {
     this.valid = true;
     this.errors = { body: false, color: false };

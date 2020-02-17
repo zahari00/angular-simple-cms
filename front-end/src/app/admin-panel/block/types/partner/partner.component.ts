@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Media } from "src/app/interfaces";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "input-partner",
@@ -34,19 +35,27 @@ export class PartnerComponent implements OnInit {
   valid: boolean = true;
 
   ngOnInit() {
-    if(!this.data) return
+    if (!this.data) return;
 
-    this.partners =  this.data.partners.map((partner: any) => partner.image)
+    this.partners = this.data.partners.map((partner: any) => partner.image);
   }
 
-  handleChange(index: number, value: Media) {
-    console.log(index, value);
+  /**
+   * Handle partner change
+   *
+   * @param index
+   * @param value
+   */
+  handleChange(index: number, value: Media): void {
     let partners = [...this.partners];
     partners[index] = value;
 
     this.partners = partners;
   }
 
+  /**
+   * Add new partner
+   */
   addPartner() {
     this.partners = [
       ...this.partners,
@@ -62,6 +71,21 @@ export class PartnerComponent implements OnInit {
     ];
   }
 
+  /**
+   * Reorder partners
+   * 
+   * @param e
+   */
+  partnerDrop(e: CdkDragDrop<string[]>) {
+    moveItemInArray(this.partners, e.previousIndex, e.currentIndex);
+  }
+
+  /**
+   * Remove partner
+   *
+   * @param e
+   * @param index
+   */
   removePartner(e: MouseEvent, index: number) {
     e.preventDefault();
     let partners = [...this.partners];
@@ -69,6 +93,9 @@ export class PartnerComponent implements OnInit {
     this.partners = partners;
   }
 
+  /**
+   * Validate data and emit submit event
+   */
   validateData() {
     this.valid = true;
     this.errors = { partners: {} };

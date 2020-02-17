@@ -33,18 +33,36 @@ export class HeaderComponent implements OnInit {
     this.pageService.getPages(1, 999999);
   }
 
+  /**
+   * Add item
+   * 
+   * @param page 
+   */
   addItem(page: Page) {
     this.layoutService.addItem(page);
   }
 
+  /**
+   * Reorder items
+   * 
+   * @param event 
+   */
   reorderItems(event: CdkDragDrop<string[]>) {
     this.layoutService.reorderHeaderItems(event)
   }
-  
+
+  /**
+   * Remove item
+   * 
+   * @param index 
+   */
   removeItem(index: number) {
     this.layoutService.removeItem(index)
   }
 
+  /**
+   * Save changes
+   */
   save() {
     this.layoutService.saveHeaderItems();
   }

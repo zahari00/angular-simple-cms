@@ -23,11 +23,17 @@ export class BlockListComponent implements OnInit {
   ngOnInit() {
     this.loadBlocks()
   }
-
+  
+  /**
+   * Get all blocks
+   */
   loadBlocks() {
     this.blockService.getBlocks(this.currentPage, this.pagesPerPage)
   }
 
+  /**
+   * Destroy block
+   */
   deleteBlock({ id }) {
     this.blockService.deleteBlock(id);
   }

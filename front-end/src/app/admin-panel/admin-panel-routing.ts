@@ -34,7 +34,11 @@ const routes: Routes = [
     path: "layout",
     component: LayoutComponent
   },
-  { path: "**", redirectTo: '/backend/dashboard' }
+  // {
+  //   path: "**",
+  //   redirectTo: "/backend/dashboard",
+  //   pathMatch: "full"
+  // }
 ];
 
 @NgModule({

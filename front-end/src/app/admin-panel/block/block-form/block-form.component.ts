@@ -1,19 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BlockService } from "../block.service";
 import { ActivatedRoute } from "@angular/router";
-import { Block } from "src/app/interfaces";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "admin-panel-block-form",
   templateUrl: "./block-form.component.html",
   styleUrls: ["./block-form.component.styl"]
 })
-export class BlockFormComponent implements OnInit {
+export class BlockFormComponent implements OnInit, OnDestroy {
   errors: Errors = {
     title: false
   };
 
   blockId: number;
+
+  routeChangeSubscription: Subscription
  
   get type(): string {
     return this.blockService.type;
@@ -38,12 +40,21 @@ export class BlockFormComponent implements OnInit {
 
   ngOnInit() {
     this.blockService.resetData();
-    this.route.paramMap.subscribe(params => {
+
+    /**
+     * Get block on route change
+     */
+    this.routeChangeSubscription = this.route.paramMap.subscribe(params => {
       const blockId: number = +params.get("blockId");
       if (!blockId) return;
       this.blockId = blockId;
       this.blockService.getBlock(blockId);
     });
+  }
+
+  ngOnDestroy() {
+    // unsubscribe from route change event
+    this.routeChangeSubscription.unsubscribe()
   }
 
   changeType(type: string) {

@@ -35,6 +35,12 @@ export class PageService {
     private router: Router
   ) {}
 
+  /**
+   * Get pages
+   * 
+   * @param page 
+   * @param per_page 
+   */
   getPages(page: number, per_page: number) {
     return this.http.get(REQ_URL, { per_page, page }).subscribe(res => {
       if (res.success) {
@@ -43,6 +49,9 @@ export class PageService {
     });
   }
 
+  /**
+   * Reset data
+   */
   resetData() {
     this.pageNotFound = false;
     this.selectedBlockIds = {};
@@ -50,10 +59,18 @@ export class PageService {
     this.selectedPage = undefined;
   }
 
+  /**
+   * Get all blocks
+   */
   getAllBlocks() {
     this.blockService.getBlocks(1, 999999);
   }
 
+  /**
+   * Destroy page
+   * 
+   * @param id 
+   */
   deletePage(id: number) {
     this.http.delete(`api/pages/${id}`).subscribe(res => {
       if (!res.success) return;
@@ -62,6 +79,14 @@ export class PageService {
     });
   }
 
+  /**
+   * Create or Save page
+   * 
+   * @param id 
+   * @param slug 
+   * @param title 
+   * @param blocks 
+   */
   savePage(id: number = 0, slug: string, title: string, blocks: number[]) {
     if (id) {
       this.http
@@ -88,6 +113,11 @@ export class PageService {
       });
   }
 
+  /**
+   * Get page
+   * 
+   * @param id 
+   */
   getPage(id: number) {
     this.http.get(`api/pages/${id}`).subscribe(res => {
       if (!res.success) {
@@ -104,11 +134,21 @@ export class PageService {
     });
   }
 
+  /**
+   * Add block
+   * 
+   * @param block 
+   */
   addBlock(block: Block) {
     this.selectedBlocks = [...this.selectedBlocks, block];
     this.selectedBlockIds[block.id] = true;
   }
 
+  /**
+   * Remove selected block
+   * 
+   * @param block 
+   */
   removeSelectedBlock(block: Block) {
     this.selectedBlocks = this.selectedBlocks.filter(
       currBlock => currBlock.id !== block.id
@@ -116,6 +156,11 @@ export class PageService {
     this.selectedBlockIds[block.id] = undefined;
   }
 
+  /**
+   * Reorder blocks
+   * 
+   * @param event 
+   */
   blocksDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
       this.selectedBlocks,
@@ -124,6 +169,11 @@ export class PageService {
     );
   }
 
+  /**
+   * Destroy block
+   * 
+   * @param id 
+   */
   deleteBlock(id: number) {
     this.http.delete(`api/pages/${id}`).subscribe(res => {
       if (!res.success) return;
