@@ -1,0 +1,11 @@
+<section class="block" [ngClass]="'block-' + block.type">
+  <div class="container">
+    <div class="partners">
+      <article *ngFor="let partner of block.data.partners;" class="partner">
+        <figure>
+          <img [src]="imagePath(partner.image)" [alt]="partner.image.alt" [title]="partner.image.title">
+        </figure>
+      </article>
+    </div>
+  </div>
+</section>

@@ -10,27 +10,11 @@
     </ul>
   </div>
 </header>
-<app-blocks *ngIf="!loading && !notFound"></app-blocks>
-<div *ngIf="loading">
-  <br>
-  <br>
-  <br>
-  <h1>Loading</h1>
-  <br>
-  <br>
-  <br>
-  <br>
-</div>
-<div *ngIf="notFound">
-  <br>
-  <br>
-  <br>
-  <h1>Page not found</h1>
-  <br>
-  <br>
-  <br>
-  <br>
-</div>
+<main>
+  <app-blocks *ngIf="!loading && !notFound"></app-blocks>
+  <app-loader *ngIf="loading"></app-loader>
+  <app-page-not-found *ngIf="notFound"></app-page-not-found>
+</main>
 <footer>
   <p>{{footer?.text}}</p>
 </footer>

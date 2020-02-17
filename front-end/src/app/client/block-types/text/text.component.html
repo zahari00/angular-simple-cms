@@ -1,6 +1,6 @@
-<section class="block" [ngClass]="'block-' + block.type">
+<section class="block" [ngClass]="'block-' + block.type" [style.background-color]="block?.data?.color">
   <div class="container">
-    <div class="text-container text-center" [style.background-color]="block?.data?.color">
+    <div class="text-container text-center">
       <h2>{{block?.title}}</h2>
       <p>
         {{block?.data?.body}}
