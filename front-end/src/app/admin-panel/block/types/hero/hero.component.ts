@@ -37,7 +37,11 @@ export class HeroComponent {
       this.valid = false;
     }
 
-    if (!this.valid) return;
+    if (!this.valid) {
+      this.submit.emit(false)
+      return;
+    }
+    
     this.submit.emit({ image, cta });
   }
 }

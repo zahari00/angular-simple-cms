@@ -1,8 +1,12 @@
 <ng-template ngFor let-block [ngForOf]="blocks">
-  <ng-container [ngSwitch]="block.type">
-    <app-hero *ngSwitchCase="'hero'" [block]="block"></app-hero>
-    <app-text *ngSwitchCase="'text'" [block]="block"></app-text>
-    <app-partners *ngSwitchCase="'partners'" [block]="block"></app-partners>
-    <app-two-columns *ngSwitchCase="'two_columns'" [block]="block"></app-two-columns>
-  </ng-container>
+  <div [ngClass]="isAuthed ? 'admin-container' : false" (click)="editBlock(block)">
+    <div [ngClass]="isAuthed ? 'inner' : false" (click)="stopPropagation($event)">
+      <ng-container [ngSwitch]="block.type">
+        <app-hero *ngSwitchCase="'hero'" [block]="block"></app-hero>
+        <app-text *ngSwitchCase="'text'" [block]="block"></app-text>
+        <app-partners *ngSwitchCase="'partners'" [block]="block"></app-partners>
+        <app-two-columns *ngSwitchCase="'two_columns'" [block]="block"></app-two-columns>
+      </ng-container>
+    </div>
+  </div>
 </ng-template>

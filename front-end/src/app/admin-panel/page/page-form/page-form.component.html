@@ -4,36 +4,41 @@
       <a class="btn btn-action" routerLink="/backend/pages/list">View all</a>
     </div>
     <form *ngIf="!notFound" class="form" (submit)="submitHandler($event, slug.value, title.value)">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="errors.slug ? 'invalid' : false">
         <label for="slug">Slug</label>
         <input type="text" id="slug" #slug [value]="defaultSlug" class="form-control">
+        <p *ngIf="errors.slug" class="error-response">{{errors.slug}}</p>
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="errors.title ? 'invalid' : false">
         <label for="title">Title</label>
         <input type="text" id="title" #title [value]="defaultTitle" class="form-control">
+        <p *ngIf="errors.title" class="error-response">{{errors.title}}</p>
       </div>
 
-      <div class="blocks-picker form-group">
-        <div class="left">
-          <p class="block-title">Choose blocks</p>
-          <div class="blocks-con">
-            <div class="drag" *ngFor="let block of blocks" (click)="addBlock(block)">{{getBlockTitle(block.title)}}
+      <div>
+        <div class="blocks-picker form-group" [ngClass]="errors.blocks ? 'invalid' : false">
+          <div class="left">
+            <label class="block-title">Choose blocks</label>
+            <div class="blocks-con">
+              <div class="drag" *ngFor="let block of blocks" (click)="addBlock(block)">{{getBlockTitle(block.title)}}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="right">
-          <p class="block-title">Selected blocks</p>
-          <div class="blocks-con" cdkDropList (cdkDropListDropped)="blocksDrop($event)">
-            <div class="drag" *ngFor="let block of selectedBlocks" cdkDrag>
-              <div class="draggable-con">
-                {{getBlockTitle(block.title)}}
-                <div class="remove" (click)="removeSelectedBlock(block)">
-                  <fa-icon [icon]="removeBlockIcon"></fa-icon>
+          <div class="right">
+            <label class="block-title">Selected blocks</label>
+            <div class="blocks-con" cdkDropList (cdkDropListDropped)="blocksDrop($event)">
+              <div class="drag" *ngFor="let block of selectedBlocks" cdkDrag>
+                <div class="draggable-con">
+                  {{getBlockTitle(block.title)}}
+                  <div class="remove" (click)="removeSelectedBlock(block)">
+                    <fa-icon [icon]="removeBlockIcon"></fa-icon>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <p *ngIf="errors.blocks" class="error-response mb">{{errors.blocks}}</p>
       </div>
       <button class="btn btn-success">Save</button>
     </form>

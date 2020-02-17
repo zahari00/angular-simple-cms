@@ -53,6 +53,8 @@ export class BlockFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if(!this.routeChangeSubscription) return;
+
     // unsubscribe from route change event
     this.routeChangeSubscription.unsubscribe()
   }
@@ -62,12 +64,13 @@ export class BlockFormComponent implements OnInit, OnDestroy {
   }
 
   submitHandler(title: string, data: any) {
-    if (!data) return;
+    this.errors = { title: false }
 
-    if (!title) {
+    if (!title.trim()) {
       this.errors.title = "Title is required";
-      return;
     }
+    
+    if (!data || this.errors.title) return;
 
     this.blockService.saveBlock(this.blockId, this.type, title, data);
   }

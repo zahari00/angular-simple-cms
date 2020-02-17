@@ -73,7 +73,7 @@ export class PartnerComponent implements OnInit {
 
   /**
    * Reorder partners
-   * 
+   *
    * @param e
    */
   partnerDrop(e: CdkDragDrop<string[]>) {
@@ -107,7 +107,10 @@ export class PartnerComponent implements OnInit {
       }
     });
 
-    if (!this.valid) return;
+    if (!this.valid) {
+      this.submit.emit(false)
+      return;
+    }
     this.submit.emit({
       partners: this.partners.map(partner => ({ image: partner }))
     });

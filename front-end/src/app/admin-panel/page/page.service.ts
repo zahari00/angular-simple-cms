@@ -37,9 +37,9 @@ export class PageService {
 
   /**
    * Get pages
-   * 
-   * @param page 
-   * @param per_page 
+   *
+   * @param page
+   * @param per_page
    */
   getPages(page: number, per_page: number) {
     return this.http.get(REQ_URL, { per_page, page }).subscribe(res => {
@@ -68,8 +68,8 @@ export class PageService {
 
   /**
    * Destroy page
-   * 
-   * @param id 
+   *
+   * @param id
    */
   deletePage(id: number) {
     this.http.delete(`api/pages/${id}`).subscribe(res => {
@@ -81,11 +81,11 @@ export class PageService {
 
   /**
    * Create or Save page
-   * 
-   * @param id 
-   * @param slug 
-   * @param title 
-   * @param blocks 
+   *
+   * @param id
+   * @param slug
+   * @param title
+   * @param blocks
    */
   savePage(id: number = 0, slug: string, title: string, blocks: number[]) {
     if (id) {
@@ -107,7 +107,7 @@ export class PageService {
       })
       .subscribe(res => {
         if (res.success) {
-          this.router.navigate(["backend", "pages"]);
+          this.router.navigate(["backend", "pages", "list"]);
           return;
         }
       });
@@ -115,8 +115,8 @@ export class PageService {
 
   /**
    * Get page
-   * 
-   * @param id 
+   *
+   * @param id
    */
   getPage(id: number) {
     this.http.get(`api/pages/${id}`).subscribe(res => {
@@ -136,8 +136,8 @@ export class PageService {
 
   /**
    * Add block
-   * 
-   * @param block 
+   *
+   * @param block
    */
   addBlock(block: Block) {
     this.selectedBlocks = [...this.selectedBlocks, block];
@@ -146,8 +146,8 @@ export class PageService {
 
   /**
    * Remove selected block
-   * 
-   * @param block 
+   *
+   * @param block
    */
   removeSelectedBlock(block: Block) {
     this.selectedBlocks = this.selectedBlocks.filter(
@@ -158,8 +158,8 @@ export class PageService {
 
   /**
    * Reorder blocks
-   * 
-   * @param event 
+   *
+   * @param event
    */
   blocksDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(
@@ -171,8 +171,8 @@ export class PageService {
 
   /**
    * Destroy block
-   * 
-   * @param id 
+   *
+   * @param id
    */
   deleteBlock(id: number) {
     this.http.delete(`api/pages/${id}`).subscribe(res => {

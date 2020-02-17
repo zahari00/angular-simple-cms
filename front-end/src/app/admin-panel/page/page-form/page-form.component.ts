@@ -4,7 +4,7 @@ import { Block } from "src/app/interfaces";
 import { faHamburger, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { CdkDragDrop } from "@angular/cdk/drag-drop";
 import { ActivatedRoute } from "@angular/router";
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "admin-panel-create-page",
@@ -15,8 +15,14 @@ export class PageFormComponent implements OnInit, OnDestroy {
   dragHandlerIcon = faHamburger;
   removeBlockIcon = faTrashAlt;
   pageId: number = 0;
-  routeChangeSubscription: Subscription
+  errors: Errors = {
+    slug: false,
+    title: false,
+    blocks: false
+  };
 
+  valid: boolean = true;
+  routeChangeSubscription: Subscription;
 
   get defaultSlug() {
     if (!this.pageService.selectedPage) return "";
@@ -50,7 +56,8 @@ export class PageFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.pageService.resetData();
     this.pageService.getAllBlocks();
-    this.route.paramMap.subscribe(params => {
+
+    this.routeChangeSubscription = this.route.paramMap.subscribe(params => {
       const pageId: number = +params.get("pageId");
       if (!pageId) return;
       this.pageId = pageId;
@@ -59,13 +66,15 @@ export class PageFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routeChangeSubscription.unsubscribe()
+    if (!this.routeChangeSubscription) return;
+
+    this.routeChangeSubscription.unsubscribe();
   }
 
   /**
    * Get block title
-   * 
-   * @param title 
+   *
+   * @param title
    */
   getBlockTitle(title: string): string {
     let result = title.substring(0, 22).trim();
@@ -76,8 +85,8 @@ export class PageFormComponent implements OnInit, OnDestroy {
 
   /**
    * Add block
-   * 
-   * @param block 
+   *
+   * @param block
    */
   addBlock(block: Block) {
     this.pageService.addBlock(block);
@@ -85,8 +94,8 @@ export class PageFormComponent implements OnInit, OnDestroy {
 
   /**
    * Remove selected block
-   * 
-   * @param block 
+   *
+   * @param block
    */
   removeSelectedBlock(block: Block) {
     this.pageService.removeSelectedBlock(block);
@@ -94,8 +103,8 @@ export class PageFormComponent implements OnInit, OnDestroy {
 
   /**
    * Reorder selected blocks
-   * 
-   * @param event 
+   *
+   * @param event
    */
   blocksDrop(event: CdkDragDrop<string[]>) {
     this.pageService.blocksDrop(event);
@@ -103,13 +112,44 @@ export class PageFormComponent implements OnInit, OnDestroy {
 
   /**
    * Handle submit
-   * 
-   * @param e 
-   * @param slug 
-   * @param title 
+   *
+   * @param e
+   * @param slug
+   * @param title
    */
   submitHandler(e: Event, slug: string, title: string): void {
     e.preventDefault();
+    this.valid = true;
+    let valid = true;
+    let errors: Errors = {
+      blocks: false,
+      title: false,
+      slug: false
+    };
+    // validate data
+    if (!slug.trim()) {
+      valid = false;
+      errors.slug = "Slug is required";
+    }
+
+    if (!title) {
+      valid = false;
+      errors.title = "Title is required";
+    }
+
+
+    if (slug && !slugRegex.test(slug)) {
+      valid = false;
+      errors.slug = "Slug format is invalid";
+    }
+
+    if (!this.selectedBlocks.length) {
+      valid = false;
+      errors.blocks = "Please select at least one block.";
+    }
+    this.errors = errors;
+    this.valid = valid;
+    if (!valid) return;
 
     this.pageService.savePage(
       this.pageId,
@@ -118,4 +158,12 @@ export class PageFormComponent implements OnInit, OnDestroy {
       this.selectedBlocks.map(block => block.id)
     );
   }
+}
+
+const slugRegex = new RegExp("\/[\/a-z-0-9]+$");
+
+interface Errors {
+  blocks: false | string;
+  title: false | string;
+  slug: false | string;
 }

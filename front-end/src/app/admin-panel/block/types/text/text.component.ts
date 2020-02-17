@@ -6,10 +6,10 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
   styleUrls: ["./text.component.styl"]
 })
 export class TextComponent {
-  @Input() data: any
+  @Input() data: any;
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
-  defaultColor: string = '#fff'
+  defaultColor: string = "#fff";
 
   errors: Errors = {
     body: false,
@@ -20,9 +20,9 @@ export class TextComponent {
 
   /**
    * Validate data and emit submit event
-   * 
-   * @param body 
-   * @param color 
+   *
+   * @param body
+   * @param color
    */
   validateData(body: string, color: string) {
     this.valid = true;
@@ -37,13 +37,16 @@ export class TextComponent {
       this.valid = false;
     }
 
-    if (!this.valid) return;
+    if (!this.valid) {
+      this.submit.emit(false);
+      return;
+    }
+
     this.submit.emit({ body, color });
   }
 }
 
 interface Errors {
-  body: boolean | string
-  color: boolean | string
+  body: boolean | string;
+  color: boolean | string;
 }
-

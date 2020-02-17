@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { Media } from 'src/app/interfaces';
+import { Media } from "src/app/interfaces";
 
 @Component({
   selector: "block-two-columns",
@@ -21,9 +21,9 @@ export class TwoColumnsComponent {
 
   /**
    * Validate data and emit submit event
-   * 
-   * @param body 
-   * @param image 
+   *
+   * @param body
+   * @param image
    */
   validateData(body: string, image: Media) {
     this.valid = true;
@@ -39,13 +39,16 @@ export class TwoColumnsComponent {
       this.valid = false;
     }
 
-    if (!this.valid) return;
+    if (!this.valid) {
+      this.submit.emit(false);
+      return;
+    }
+    
     this.submit.emit({ body, image });
   }
 }
 
-
 interface Errors {
-  body: false | string
-  image: false | string
+  body: false | string;
+  image: false | string;
 }

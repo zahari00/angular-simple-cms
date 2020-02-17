@@ -43,9 +43,17 @@ export class RequestService {
    */
   post(url: string, body: object, sendSuccess: boolean = true) {
     return this.listenForResponse(
-      this.http.post<ApiResponse>(this.getFullUrl(url), {
-        body
-      }),
+      this.http.post<ApiResponse>(
+        this.getFullUrl(url),
+        {
+          body
+        },
+        {
+          headers: {
+            ...this.setHeaders()
+          }
+        }
+      ),
       sendSuccess
     );
   }
@@ -138,17 +146,17 @@ export class RequestService {
     // If the request is not successful, call handleErrors method
     if (!res.success) this.handleErrors(res.code, res.errors);
 
-    // If the response is successful and sendSuccess is true, 
-    // send successful toast message to the user 
+    // If the response is successful and sendSuccess is true,
+    // send successful toast message to the user
     if (res.success && sendSuccess)
       this.toast.success("Changes saved successfuly");
   }
 
   /**
    * Handle errors
-   * 
-   * @param errorCode 
-   * @param errors 
+   *
+   * @param errorCode
+   * @param errors
    */
   private handleErrors(errorCode: number, errors: string[]): void {
     // send error toast for each error
