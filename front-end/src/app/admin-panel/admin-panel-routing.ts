@@ -20,15 +20,7 @@ const routes: Routes = [
   },
   {
     path: "pages",
-    component: PageListComponent
-  },
-  {
-    path: "pages/create",
-    component: PageFormComponent
-  },
-  {
-    path: "pages/:pageId",
-    component: PageFormComponent
+    loadChildren: () => import('./page/page.module').then(m => m.PageModule)    
   },
   {
     path: "blocks",

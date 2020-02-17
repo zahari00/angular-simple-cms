@@ -10,11 +10,6 @@ import { BlockModule } from './block/block.module'
 
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
-// Pages
-import { PageListComponent } from "./page/page-list/page-list.component";
-import { PageFormComponent } from "./page/page-form/page-form.component";
-
-
 // Layout
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -22,9 +17,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
-    PageListComponent,
     DashboardComponent,
-    PageFormComponent,
     LayoutComponent,
     HeaderComponent,
     FooterComponent

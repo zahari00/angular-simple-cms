@@ -14,11 +14,20 @@ export class ToastsComponent {
 
   constructor(private toastService: ToastService) {}
 
+  /**
+   * Get toast classes 
+   * 
+   * @param toast 
+   */
   getToastClasses(toast: Toast) {
     return `toast-${toast.type} toast-status-${toast.status}`;
   }
 
-  removeToast(index: number) {
-    this.toastService.removeToast(index);
+  /**
+   * Remove specific toast
+   * @param id 
+   */
+  removeToast(id: number) {
+    this.toastService.removeToast(id);
   }
 }

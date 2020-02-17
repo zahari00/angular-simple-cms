@@ -2,7 +2,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DragDropModule } from "@angular/cdk/drag-drop";
-import { RouterModule } from '@angular/router';
 import { AdminPanelRoutingModule } from "../admin-panel-routing";
 import { MediaModule } from "../media/media.module";
 import { SharedModule } from "../shared/shared.module";
@@ -35,7 +34,6 @@ import { PartnerComponent } from './types/partner/partner.component';
     MediaModule,
     DragDropModule,
     BlockRoutingModule,
-    RouterModule,
   ]
 })
 export class BlockModule {}

@@ -1,7 +1,7 @@
 <admin-panel-wrapper>
   <section class="main">
     <div class="btn-con">
-      <a class="btn btn-action" routerLink="/backend/pages">View all</a>
+      <a class="btn btn-action" routerLink="/backend/pages/list">View all</a>
     </div>
     <form *ngIf="!notFound" class="form" (submit)="submitHandler($event, slug.value, title.value)">
       <div class="form-group">
