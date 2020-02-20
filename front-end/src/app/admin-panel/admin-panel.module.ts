@@ -14,13 +14,17 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserFormComponent } from './user/user-form/user-form.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     LayoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UserListComponent,
+    UserFormComponent
   ],
   exports: [],
   imports: [
