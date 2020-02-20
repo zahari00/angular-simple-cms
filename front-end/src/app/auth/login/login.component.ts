@@ -21,11 +21,11 @@ export class LoginComponent {
    * On login submit
    * 
    * @param e 
-   * @param email 
+   * @param username 
    * @param password 
    */
-  login(e: any, email: string, password: string) {
+  login(e: any, username: string, password: string) {
     e.preventDefault();
-    this.authService.login(email, password);
+    this.authService.login(username, password);
   }
 }

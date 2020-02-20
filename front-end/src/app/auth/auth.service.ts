@@ -19,12 +19,12 @@ export class AuthService {
   /**
    * Login request
    * 
-   * @param email 
+   * @param username 
    * @param password 
    */
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     this.http
-      .post("api/login", { email, password }, false)
+      .post("api/login", { email: username, password }, false)
       .subscribe(response => {
         if (response.success) {
           this.authed = true;
