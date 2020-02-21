@@ -138,7 +138,7 @@ export class PageFormComponent implements OnInit, OnDestroy {
     }
 
 
-    if (slug && !slugRegex.test(slug)) {
+    if (slug && slug !== '/' && !slugRegex.test(slug)) {
       valid = false;
       errors.slug = "Slug format is invalid";
     }

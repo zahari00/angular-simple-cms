@@ -211,11 +211,6 @@ class DatabaseSeeder extends Seeder
                     ],
                 ]),
             ],
-            [
-                'title'         => 'Contact us',
-                'type'          => 'contact',
-                'data'          => json_encode([]),
-            ]
         ];
 
 
@@ -226,72 +221,135 @@ class DatabaseSeeder extends Seeder
 
 
         $pages_list = [
-            // 'slug'  => '/',
-            // 'title' => 'Homepage',
-            // 'block_i'
+            [
+                'slug'  => '/',
+                'title' => 'Homepage',
+                'blocks_order'  => json_encode([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+            ],
+            [
+                'slug'  => '/partners',
+                'title' => 'Partners',
+                'blocks_order'  => json_encode([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+            ],
+            [
+                'slug'  => '/about-us',
+                'title' => 'About us',
+                'blocks_order'  => json_encode([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+            ],
         ];
-        
+
         foreach ($pages_list as $page) {
             Page::create($page);
         }
 
+        DB::table('page_block')->insert([
+            [
+                'page_id'   => 1,
+                'block_id'  =>  1
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  2
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  3
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  4
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  5
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  6
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  7
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  8
+            ],
+            [
+                'page_id'   => 1,
+                'block_id'  =>  9
+            ],
+        ]);
+
 
         $media_list = [
+            // 1
             [
                 'path'          => '2-columns_1-1-1.svg',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 2
             [
                 'path'          => '2-columns_2-1-1.svg',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 3
             [
                 'path'          => '2-columns_3-1-1.svg',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 4
             [
                 'path'          => 'client-1-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 5
             [
                 'path'          => 'client-2-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 6
             [
                 'path'          => 'client-3-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 7
             [
                 'path'          => 'client-4-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 8
             [
                 'path'          => 'client-5-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 9
             [
                 'path'          => 'client-6-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 10
             [
                 'path'          => 'client-7-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 11
             [
                 'path'          => 'client-8-1-1.png',
                 'title'         => 'Lorem ipsum title',
                 'alt'           => 'Lorem ipsum alt',
             ],
+            // 12
             [
                 'path'          => 'hero-1-1.svg',
                 'title'         => 'Get started',
@@ -299,10 +357,13 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($media_list as $media) {
+        foreach ($media_list as $key => $media) {
+            $media['title']  = $media['title'] . $key;
+            $media['alt']  = $media['alt'] . $key;
+
             Media::create($media);
         }
 
-        Footer::create([ 'text' => "© Copyright NewBiz. All Rights Reserved Designed by BootstrapMade" ]);
+        Footer::create(['text' => "© Copyright NewBiz. All Rights Reserved Designed by BootstrapMade"]);
     }
 }

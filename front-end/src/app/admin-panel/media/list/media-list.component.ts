@@ -24,8 +24,8 @@ export class MediaListComponent implements OnInit {
 
   /**
    * Upload photo
-   * 
-   * @param e 
+   *
+   * @param e
    */
   uploadPhotos(e: Event) {
     const files = (<HTMLInputElement>e.target).files;
@@ -37,6 +37,10 @@ export class MediaListComponent implements OnInit {
       formData.append("media", files[i]);
       this.mediaService.uploadMedia(formData);
     }
+  }
+
+  trackByMedia(i: number, media: Media) {
+    return media.id;
   }
 
   selectMedia(media: Media) {
