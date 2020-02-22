@@ -13,7 +13,7 @@ class PageBlock extends Migration
      */
     public function up()
     {
-        Schema::create('page_blocks', function (Blueprint $table) {
+        Schema::create('page_block', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('page_id');
             $table->unsignedBigInteger('block_id');
@@ -31,6 +31,6 @@ class PageBlock extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('page_blocks');
+        Schema::dropIfExists('page_block');
     }
 }

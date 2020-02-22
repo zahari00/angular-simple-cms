@@ -3,8 +3,6 @@ import { Routes, RouterModule } from "@angular/router";
 
 // admin panel
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { PageListComponent } from "./page/page-list/page-list.component";
-import { PageFormComponent } from "./page/page-form/page-form.component";
 import { MediaComponent } from "./media/page/media.component";
 import { LayoutComponent } from "./layout/layout.component";
 
@@ -19,6 +17,14 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: "media",
+    component: MediaComponent
+  },
+  {
+    path: "layout",
+    component: LayoutComponent
+  },
+  {
     path: "pages",
     loadChildren: () => import("./page/page.module").then(m => m.PageModule)
   },
@@ -27,18 +33,9 @@ const routes: Routes = [
     loadChildren: () => import("./block/block.module").then(m => m.BlockModule)
   },
   {
-    path: "media",
-    component: MediaComponent
-  },
-  {
-    path: "layout",
-    component: LayoutComponent
-  },
-  // {
-  //   path: "**",
-  //   redirectTo: "/backend/dashboard",
-  //   pathMatch: "full"
-  // }
+    path: "users",
+    loadChildren: () => import("./user/user.module").then(m => m.UserModule)
+  }
 ];
 
 @NgModule({

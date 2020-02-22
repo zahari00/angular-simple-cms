@@ -4,7 +4,7 @@
   <label class="btn btn-primary" for="media-uploader">Upload media</label>
 </div>
 <div class="media-container">
-  <div class="media-item" *ngFor="let media of mediaList">
+  <div class="media-item" *ngFor="let media of mediaList; trackBy: trackByMedia;">
     <media-item [data]="media" (mediaClick)="selectMedia($event)" [isActive]="selectedMedia?.id == media?.id">
     </media-item>
   </div>

@@ -20,22 +20,19 @@ export class MediaService {
    */
   getAllMedia(page: number = this.page): void {
     this.page = page;
-    if (this.cache[page]) return (this.mediaList = this.cache[page]);
 
     this.http
-      .get("api/media", { per_page: 24, page })
+      .get("api/media", { per_page: 99999, page })
       .subscribe(({ success, data }) => {
-        // if (!success) {
-        //   this.mediaList[index].status = "error";
-        //   return;
-        // }
+        if (!success) {
+          return;
+        }
         const results = data.results.map((media: Media) => {
           media.status = "ready";
           return media;
         });
 
-        this.cache[page] = results;
-        this.mediaList = results;
+        this.mediaList = [ ...results ];
       });
   }
 
@@ -81,7 +78,6 @@ export class MediaService {
     return this.http.delete(`api/media/${id}`).pipe(
       map(({ success }) => {
         if (success) {
-          this.cache[this.page] = undefined;
           this.getAllMedia();
         }
       })
@@ -98,7 +94,6 @@ export class MediaService {
     return this.http.put(`api/media/${id}`, { title, alt }).pipe(
       map(({ success }) => {
         if (success) {
-          this.cache[this.page] = undefined;
           this.getAllMedia();
         }
       })

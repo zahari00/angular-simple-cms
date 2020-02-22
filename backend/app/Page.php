@@ -12,6 +12,6 @@ class Page extends Model
 
     public function blocks()
     {
-        return $this->belongsToMany(Block::class, 'page_blocks');
+        return $this->belongsToMany(Block::class, 'page_block');
     }
 }

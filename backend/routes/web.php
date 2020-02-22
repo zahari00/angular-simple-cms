@@ -31,6 +31,10 @@ Route::middleware(['cors', 'auth'])->group(function () {
         'except'    => ['create', 'edit']
     ]);
 
+    Route::resource('api/users', 'Api\UserController', [
+        'except'    => ['create', 'edit', 'update']
+    ]);
+
     Route::get('api/header', 'Api\HeaderItemController@index');
     Route::get('api/footer', 'Api\FooterController@show');
     Route::put('api/footer', 'Api\FooterController@update');

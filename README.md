@@ -17,10 +17,16 @@ Client features
 
     - Browse all pages made from the CMS
 
+## Setup:
+
+1. Create new MYSQL database.
+1. Set .env (copy the .env.example)
+1. (backend) cd backend && composer install && php artisan migrate:fresh --seed && php artisan serve
+1. (frontend) cd front-end && npm i && ng s --o
+
 ## Documentation:
 [front-end](docs/front-end-docs.md)
-
-back-end
+[back-end](backend)
 
 ## Plan to develop:
 

@@ -1,13 +1,14 @@
 // Modules
 import { NgModule } from "@angular/core";
-import { AdminPanelRoutingModule } from './admin-panel-routing';
 import { CommonModule } from "@angular/common";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { SharedModule } from "./shared/shared.module";
 import { InputModule } from "./input/input.module";
-import { MediaModule } from "./media/media.module";
-import { DragDropModule } from "@angular/cdk/drag-drop";
-import { BlockModule } from './block/block.module'
 
+// Routing
+import { AdminPanelRoutingModule } from './admin-panel-routing';
+
+// Components
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
 // Layout
@@ -20,7 +21,7 @@ import { FooterComponent } from './layout/footer/footer.component';
     DashboardComponent,
     LayoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   exports: [],
   imports: [
@@ -28,9 +29,7 @@ import { FooterComponent } from './layout/footer/footer.component';
     AdminPanelRoutingModule,
     SharedModule,
     InputModule,
-    MediaModule,
     DragDropModule,
-    BlockModule
   ]
 })
 export class AdminPanelModule {}

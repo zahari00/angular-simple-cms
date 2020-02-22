@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
   templateUrl: "./media-edit.component.html",
   styleUrls: ["./media-edit.component.styl"]
 })
-export class MediaEditComponent implements OnChanges, OnDestroy {
+export class MediaEditComponent implements OnDestroy {
   @Input() selectedMedia: Media;
   loading: boolean = false;
   deleted: boolean = false;
@@ -25,32 +25,11 @@ export class MediaEditComponent implements OnChanges, OnDestroy {
   get media() {
     // if the media is deleted return false
     if (this.deleted) return false;
-
-    return this.selectedMedia.id > 0 ? this.selectedMedia : false;
+    
+    return this.selectedMedia.id > 0 ? { ...this.selectedMedia } : false;
   }
 
   constructor(private mediaService: MediaService) {}
-
-  ngOnChanges(data: any) {
-    const { selectedMedia } = data;
-
-    if (!selectedMedia || !selectedMedia.previousValue) return;
-
-    // set loading to true
-    this.loading = true;
-
-    // hide loading
-    setTimeout(() => (this.loading = false), 150);
-
-    // get current media id and previous id
-    const currId = this.selectedMedia.id;
-    const prevId = selectedMedia.previousValue.id;
-
-    // set deleted to false
-    if (prevId !== currId) {
-      this.deleted = false;
-    }
-  }
 
   ngOnDestroy() {
     if (!this.destroyMediaSubscribtion) return;
@@ -78,7 +57,7 @@ export class MediaEditComponent implements OnChanges, OnDestroy {
 
   /**
    * Destroy media
-   * 
+   *
    * @param e
    */
   deleteMedia(e: MouseEvent) {

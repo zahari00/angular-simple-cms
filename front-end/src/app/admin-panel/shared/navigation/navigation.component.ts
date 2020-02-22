@@ -5,7 +5,8 @@ import {
   faBook,
   faThLarge,
   faHome,
-  faSignOutAlt
+  faSignOutAlt,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { Router } from "@angular/router";
 
@@ -21,6 +22,7 @@ export class NavigationComponent {
   blocksIcon = faThLarge;
   layoutIcon = faHome;
   logoutIcon = faSignOutAlt;
+  usersIcon = faUsers;
 
   constructor(private router: Router) {}
 

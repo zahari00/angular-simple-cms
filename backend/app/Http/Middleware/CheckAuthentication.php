@@ -18,7 +18,7 @@ class CheckAuthentication
     {
         $user = User::where('token', $request->header('Authorization'))->first();
 
-        if (!isset($user) || !$user) {
+        if (!isset($user) || !$user->token) {
             return response()
                 ->json([
                     'code'      => 403,
