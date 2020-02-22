@@ -5,7 +5,15 @@
     </a>
   </h1>
   <span class="divider mt-0"></span>
-  <span class="info-text">CONTENT</span>
+  <span class="info-text">ACOUNTS</span>
+  <a class="router-link" routerLink="/backend/users/list" routerLinkActive="active">
+    <fa-icon [icon]="usersIcon"></fa-icon>
+    <span>
+      Users
+    </span>
+  </a>
+  <span class="divider"></span>
+  <span class="info-text">CONTENT MANAGEMENT</span>
   <a class="router-link" routerLink="/backend/pages/list" routerLinkActive="active">
     <fa-icon [icon]="pagesIcon"></fa-icon>
     <span>
@@ -19,7 +27,7 @@
     </span>
   </a>
   <span class="divider"></span>
-  <span class="info-text">ASSESTS</span>
+  <span class="info-text">NAVIGATION & MEDIA</span>
   <a class="router-link" routerLink="/backend/media" routerLinkActive="active">
     <fa-icon [icon]="mediaIcon"></fa-icon>
     <span>
@@ -38,5 +46,5 @@
     <span>
       logout
     </span>
-  </span> 
+  </span>
 </div>

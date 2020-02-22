@@ -20,12 +20,20 @@ class DatabaseSeeder extends Seeder
     {
         $user = new User;
 
-        $user->email = 'admin';
+        $user->username = 'admin';
         $user->password = Hash::make('admin');
         $user->token = 'initial';
 
         $user->save();
 
+        
+        $user = new User;
+
+        $user->username = 'admin2';
+        $user->password = Hash::make('admin2');
+        $user->token = 'initial';
+
+        $user->save();
         $blocks_list = [
             [
                 'title'         => 'We provide solutions for your business!',

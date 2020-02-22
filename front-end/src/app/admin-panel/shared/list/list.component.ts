@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class ListComponent {
   @Input() items: any;
   @Input() model: string;
+  @Input() hideEdit: boolean =  false;
   @Output() delete: EventEmitter<any> = new EventEmitter();
 
   deleteIcon = faTrashAlt;

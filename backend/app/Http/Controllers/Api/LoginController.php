@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function login(Request $request) 
     {
-        $user = User::where('email', $request->body['email'])->first();
+        $user = User::where('username', $request->body['username'])->first();
         if(!isset($user) || !$user) {
             return [
                 'success'   => false,
@@ -26,16 +26,29 @@ class LoginController extends Controller
             ];
         }
 
-        $token = Hash::make(time() . 'Aas*%^a!@3213#as');
+        $token = $this->generateRandomString(100);
         $user->token = $token;
         $user->save();
 
         return [
             'success'   => true,
             'data'      => [
-                'token'     => $token,
-                'email'     => $user->email
+                'token'         => $token,
+                'username'      => $user->username
             ]
         ];
+    }
+
+    /**
+     * Genrate random string
+     */
+    private function generateRandomString($length = 10): string {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_"}[]\;[';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

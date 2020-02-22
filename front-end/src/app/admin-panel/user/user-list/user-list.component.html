@@ -1,1 +1,12 @@
-<p>user-list works!</p>
+<admin-panel-wrapper>
+  <section class="main">
+    <div class="btn-con">
+      <a class="btn btn-primary" routerLink="/backend/users/create">Add new user</a>
+    </div>
+    <admin-panel-list *ngIf="users.length" [items]="users" [hideEdit]="true" model="users" (delete)="onDelete($event)">
+    </admin-panel-list>
+    <h3 *ngIf="!users.length">
+        No users
+    </h3>
+  </section>
+</admin-panel-wrapper>
