@@ -106,7 +106,8 @@ export class MediaService {
    * @param size
    */
   getMediaImageUrl(path: string, size: string): string {
-    return `${environment.mediaUrl}/${size}/${path}`;
+    
+    return encodeURI(`${environment.mediaUrl}/${size}/${path}`);
   }
 
   /**
